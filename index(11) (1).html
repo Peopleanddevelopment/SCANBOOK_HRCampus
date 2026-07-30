@@ -1,0 +1,2433 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="Scanbook — Il tuo punto di partenza. Autovalutazione per manager di negozio.">
+  <meta property="og:title" content="ZARA CAMPUS · SCANBOOK · Il tuo punto di partenza">
+  <meta property="og:description" content="Autovalutazione manageriale organizzata in cinque aree.">
+  <meta property="og:type" content="website">
+  <title>ZARA CAMPUS · SCANBOOK · Il tuo punto di partenza</title>
+  <!-- Le immagini principali e il logo sono incorporati direttamente in questo file: index.html funziona anche da solo. -->
+  <style>
+    /*
+      FONT AZIENDALE
+      Il layout prova prima ABC Grotesk / ABC Diatype, quindi usa fallback di sistema.
+      Per incorporare i file WOFF2 licenziati, seguire il README e decommentare:
+
+      @font-face {
+        font-family: "ABC Grotesk";
+        src: url("assets/fonts/ABCGrotesk-Regular.woff2") format("woff2");
+        font-weight: 400;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "ABC Grotesk";
+        src: url("assets/fonts/ABCGrotesk-Medium.woff2") format("woff2");
+        font-weight: 500 700;
+        font-display: swap;
+      }
+    */
+
+    :root {
+      --black: #050505;
+      --ink: #111111;
+      --mid: #646464;
+      --line: #d9d9d9;
+      --soft-line: #ececec;
+      --paper: #ffffff;
+      --wash: #f5f5f3;
+      --font-sans: "ABC Grotesk", "ABC Diatype", "ABC Favorit", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --font-serif: "Times New Roman", Times, serif;
+      --header-h: 74px;
+      --radius: 0px;
+      --shadow: 0 18px 60px rgba(0,0,0,.09);
+      --content: 1500px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.45;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    button, input, select, textarea { font: inherit; }
+    button { color: inherit; }
+    a { color: inherit; }
+    [hidden] { display: none !important; }
+    .sr-only {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+    .skip-link {
+      position: fixed;
+      left: 16px;
+      top: 10px;
+      z-index: 9999;
+      padding: 12px 16px;
+      background: var(--paper);
+      color: var(--black);
+      transform: translateY(-150%);
+      transition: transform .2s ease;
+    }
+    .skip-link:focus { transform: translateY(0); }
+
+    .view { min-height: 100svh; }
+
+    /* Hero */
+    .welcome-view {
+      position: relative;
+      min-height: 100svh;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(390px, .75fr);
+      background: var(--black);
+      color: var(--paper);
+    }
+    .hero-photo { display: none; }
+    .hero-main {
+      position: relative;
+      z-index: 2;
+      min-height: 100svh;
+      padding: clamp(28px, 4vw, 70px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      grid-column: 1 / -1;
+    }
+    .hero-brand {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 12px;
+      width: fit-content;
+      text-transform: uppercase;
+      letter-spacing: -.04em;
+    }
+    .hero-brand .zara {
+      font-family: var(--font-serif);
+      font-size: 27px;
+      line-height: 1;
+      letter-spacing: -.12em;
+    }
+    .hero-brand .campus {
+      font-weight: 700;
+      font-size: 23px;
+      line-height: 1;
+    }
+    .hero-copy {
+      width: min(810px, 61vw);
+      margin-top: auto;
+      padding-top: 12vh;
+    }
+    .eyebrow {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin: 0 0 20px;
+      font-size: 12px;
+      font-weight: 650;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 36px;
+      height: 1px;
+      background: currentColor;
+    }
+    .hero-copy h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(52px, 7vw, 112px);
+      line-height: .88;
+      letter-spacing: -.075em;
+      font-weight: 500;
+      text-wrap: balance;
+    }
+    .hero-copy > p {
+      max-width: 640px;
+      margin: 30px 0 0;
+      font-size: clamp(18px, 1.45vw, 23px);
+      line-height: 1.35;
+      color: rgba(255,255,255,.84);
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 34px;
+    }
+    .button {
+      border: 1px solid var(--black);
+      border-radius: var(--radius);
+      background: var(--black);
+      color: var(--paper);
+      min-height: 52px;
+      padding: 14px 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-weight: 650;
+      letter-spacing: -.01em;
+      cursor: pointer;
+      transition: background .18s ease, color .18s ease, transform .18s ease, opacity .18s ease;
+      text-decoration: none;
+    }
+    .button:hover { transform: translateY(-1px); }
+    .button:active { transform: translateY(0); }
+    .button:focus-visible,
+    .icon-button:focus-visible,
+    .section-link:focus-visible,
+    .scale-option:focus-within,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+      outline: 3px solid #777;
+      outline-offset: 3px;
+    }
+    .button-light {
+      background: var(--paper);
+      color: var(--black);
+      border-color: var(--paper);
+    }
+    .button-ghost-light {
+      background: transparent;
+      color: var(--paper);
+      border-color: rgba(255,255,255,.56);
+    }
+    .button-secondary {
+      background: var(--paper);
+      color: var(--black);
+      border-color: var(--black);
+    }
+    .button-muted {
+      background: transparent;
+      color: var(--mid);
+      border-color: var(--line);
+    }
+    .button:disabled {
+      opacity: .42;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .button-arrow { font-size: 21px; line-height: 1; }
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      color: rgba(255,255,255,.64);
+      font-size: 13px;
+    }
+    .hero-meta span { display: inline-flex; align-items: center; gap: 8px; }
+    .hero-meta span + span::before { content: "/"; color: rgba(255,255,255,.35); margin-right: 10px; }
+
+    .hero-panel {
+      position: absolute;
+      z-index: 3;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: min(34vw, 520px);
+      background: rgba(2,2,2,.9);
+      border-left: 1px solid rgba(255,255,255,.19);
+      padding: clamp(28px, 3.1vw, 52px);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      backdrop-filter: blur(14px);
+    }
+    .hero-panel h2 {
+      margin: 0 0 20px;
+      font-size: 15px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      font-weight: 650;
+    }
+    .scale-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border-top: 1px solid rgba(255,255,255,.28);
+    }
+    .scale-list li {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 12px;
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(255,255,255,.2);
+      align-items: baseline;
+    }
+    .scale-list strong { font-size: 20px; font-weight: 500; }
+    .scale-list span { color: rgba(255,255,255,.76); }
+    .hero-note {
+      margin: 22px 0 0;
+      color: rgba(255,255,255,.52);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    /* App header */
+    .app-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--header-h);
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,.94);
+      backdrop-filter: blur(15px);
+      display: grid;
+      grid-template-columns: minmax(210px, 1fr) minmax(280px, 2fr) minmax(210px, 1fr);
+      align-items: center;
+      gap: 24px;
+      padding: 0 clamp(18px, 3.5vw, 56px);
+    }
+    .app-brand {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 9px;
+      width: fit-content;
+      cursor: pointer;
+      border: 0;
+      padding: 0;
+      background: none;
+    }
+    .app-brand .zara {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      letter-spacing: -.12em;
+      line-height: 1;
+    }
+    .app-brand .campus { font-weight: 750; font-size: 18px; line-height: 1; }
+    .app-brand small {
+      margin-left: 6px;
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    .global-progress {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 12px;
+      align-items: center;
+      min-width: 0;
+    }
+    .global-progress strong,
+    .global-progress span { font-size: 12px; white-space: nowrap; }
+    .global-progress span { color: var(--mid); }
+    .progress-track {
+      position: relative;
+      height: 2px;
+      overflow: hidden;
+      background: var(--soft-line);
+    }
+    .progress-fill {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 0;
+      background: var(--black);
+      transition: width .25s ease;
+    }
+    .header-tools {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 12px;
+    }
+    .save-status {
+      font-size: 11px;
+      color: var(--mid);
+      white-space: nowrap;
+    }
+    .icon-button {
+      min-height: 38px;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      padding: 8px 12px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* Profile */
+    .profile-view,
+    .results-view { background: var(--wash); }
+    .profile-wrap {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: clamp(46px, 8vw, 110px) 0 90px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(300px, .65fr);
+      gap: clamp(40px, 8vw, 110px);
+      align-items: start;
+    }
+    .step-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 22px;
+      font-size: 12px;
+      font-weight: 650;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+    .step-label::before { content: ""; width: 34px; height: 1px; background: currentColor; }
+    .profile-copy h1,
+    .results-intro h1 {
+      margin: 0;
+      font-weight: 500;
+      letter-spacing: -.055em;
+      line-height: .98;
+      font-size: clamp(48px, 6vw, 88px);
+      text-wrap: balance;
+    }
+    .profile-copy > p,
+    .results-intro > p {
+      max-width: 690px;
+      margin: 26px 0 0;
+      color: var(--mid);
+      font-size: 18px;
+      line-height: 1.5;
+    }
+    .profile-form {
+      margin-top: 44px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px 18px;
+    }
+    .field { display: grid; gap: 9px; }
+    .field-full { grid-column: 1 / -1; }
+    .field label {
+      font-size: 12px;
+      font-weight: 650;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      min-height: 54px;
+      border: 0;
+      border-bottom: 1px solid var(--black);
+      background: transparent;
+      border-radius: 0;
+      padding: 12px 2px;
+      color: var(--black);
+      outline: none;
+    }
+    .field input::placeholder,
+    .field textarea::placeholder { color: #969696; }
+    .field select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, #111 50%), linear-gradient(135deg, #111 50%, transparent 50%); background-position: calc(100% - 15px) 24px, calc(100% - 10px) 24px; background-size: 5px 5px, 5px 5px; background-repeat: no-repeat; padding-right: 36px; }
+    .field-error { color: #8b0000; font-size: 12px; min-height: 1.2em; }
+    .profile-actions { grid-column: 1 / -1; display: flex; align-items: center; gap: 16px; margin-top: 10px; flex-wrap: wrap; }
+    .profile-side {
+      position: sticky;
+      top: calc(var(--header-h) + 36px);
+      background: var(--black);
+      color: var(--paper);
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+    .profile-side h2 { margin: 0 0 18px; font-size: 14px; text-transform: uppercase; letter-spacing: .08em; }
+    .profile-side p { color: rgba(255,255,255,.68); font-size: 13px; margin: 18px 0 0; }
+    .profile-side .scale-list li { padding: 11px 0; grid-template-columns: 32px 1fr; }
+    .profile-side .scale-list strong { font-size: 16px; }
+    .profile-side .scale-list span { font-size: 13px; }
+
+    /* Survey */
+    .survey-view { background: var(--paper); }
+    .survey-shell {
+      width: min(var(--content), 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 300px minmax(0, 1fr);
+      min-height: calc(100svh - var(--header-h));
+    }
+    .section-nav {
+      position: sticky;
+      top: var(--header-h);
+      height: calc(100svh - var(--header-h));
+      padding: 34px 24px 28px clamp(24px, 3vw, 48px);
+      border-right: 1px solid var(--line);
+      background: var(--wash);
+      overflow-y: auto;
+    }
+    .section-nav-title {
+      margin: 0 0 18px;
+      color: var(--mid);
+      font-size: 11px;
+      font-weight: 650;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .section-links { display: grid; gap: 4px; }
+    .section-link {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 32px 1fr auto;
+      gap: 9px;
+      align-items: center;
+      min-height: 54px;
+      padding: 10px 10px;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      background: transparent;
+      text-align: left;
+      cursor: pointer;
+    }
+    .section-link:hover { background: #eeeeec; }
+    .section-link[aria-current="step"] { background: var(--black); color: var(--paper); border-color: var(--black); }
+    .section-link-number { font-size: 11px; color: var(--mid); }
+    .section-link[aria-current="step"] .section-link-number { color: rgba(255,255,255,.58); }
+    .section-link-code { font-weight: 700; letter-spacing: -.02em; }
+    .section-link-status { width: 9px; height: 9px; border: 1px solid currentColor; border-radius: 50%; opacity: .45; }
+    .section-link.is-complete .section-link-status { background: currentColor; opacity: 1; }
+    .section-link.is-partial .section-link-status { background: linear-gradient(90deg, currentColor 50%, transparent 50%); opacity: .8; }
+    .nav-note { margin: 30px 10px 0; color: var(--mid); font-size: 12px; }
+
+    .survey-main { min-width: 0; padding: 0 clamp(22px, 4.4vw, 72px) 80px; }
+    .mobile-section-tabs { display: none; }
+    .section-header {
+      padding: clamp(46px, 6vw, 88px) 0 32px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 30px;
+      border-bottom: 1px solid var(--black);
+      align-items: end;
+    }
+    .section-kicker { margin: 0 0 12px; font-size: 12px; font-weight: 650; text-transform: uppercase; letter-spacing: .14em; }
+    .section-header h1 {
+      margin: 0;
+      font-size: clamp(48px, 6vw, 96px);
+      line-height: .92;
+      letter-spacing: -.07em;
+      font-weight: 500;
+    }
+    .section-header p { margin: 18px 0 0; color: var(--mid); font-size: 17px; }
+    .section-stat { min-width: 135px; text-align: right; }
+    .section-stat strong { display: block; font-size: 38px; line-height: 1; font-weight: 500; letter-spacing: -.05em; }
+    .section-stat span { color: var(--mid); font-size: 11px; text-transform: uppercase; letter-spacing: .09em; }
+
+    .scale-ribbon-wrap {
+      position: sticky;
+      top: var(--header-h);
+      z-index: 40;
+      background: rgba(255,255,255,.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .scale-ribbon {
+      min-height: 68px;
+      display: grid;
+      grid-template-columns: minmax(160px, 1fr) repeat(6, minmax(54px, 88px));
+      gap: 8px;
+      align-items: center;
+      padding: 9px 0;
+    }
+    .scale-ribbon-title { font-size: 12px; color: var(--mid); }
+    .scale-ribbon-item { display: grid; justify-items: center; text-align: center; line-height: 1.15; }
+    .scale-ribbon-item strong { font-size: 15px; font-weight: 650; }
+    .scale-ribbon-item span { margin-top: 3px; font-size: 9px; color: var(--mid); text-transform: uppercase; letter-spacing: .045em; }
+
+    .questions { padding-top: 14px; }
+    .question-group { scroll-margin-top: calc(var(--header-h) + 86px); }
+    .group-header {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 14px;
+      align-items: baseline;
+      padding: 38px 0 17px;
+      border-bottom: 1px solid var(--black);
+    }
+    .group-index { font-size: 12px; color: var(--mid); }
+    .group-header h2 { margin: 0; font-size: clamp(23px, 2.4vw, 34px); letter-spacing: -.04em; line-height: 1.05; font-weight: 500; }
+    .group-progress { color: var(--mid); font-size: 12px; }
+    .question-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(350px, 530px);
+      gap: 30px;
+      align-items: center;
+      min-height: 94px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--soft-line);
+      scroll-margin-top: calc(var(--header-h) + 86px);
+      transition: background .18s ease, box-shadow .18s ease;
+    }
+    .question-card.is-missing {
+      background: #f6eeee;
+      box-shadow: 20px 0 0 #f6eeee, -20px 0 0 #f6eeee;
+    }
+    .question-copy { display: grid; grid-template-columns: 42px minmax(0,1fr); gap: 14px; align-items: start; }
+    .question-number { color: var(--mid); font-size: 11px; padding-top: 5px; }
+    .question-copy p { margin: 0; font-size: clamp(16px, 1.25vw, 19px); line-height: 1.36; text-wrap: pretty; }
+    .likert { margin: 0; padding: 0; border: 0; min-width: 0; }
+    .likert-options { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+    .scale-option { position: relative; display: block; cursor: pointer; }
+    .scale-option input { position: absolute; opacity: 0; pointer-events: none; }
+    .scale-option span {
+      min-height: 48px;
+      border: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--paper);
+      font-size: 14px;
+      font-weight: 600;
+      transition: background .15s ease, color .15s ease, border-color .15s ease, transform .15s ease;
+    }
+    .scale-option:hover span { border-color: var(--black); transform: translateY(-1px); }
+    .scale-option input:checked + span { background: var(--black); color: var(--paper); border-color: var(--black); }
+    .scale-option-na span { font-size: 10px; letter-spacing: .06em; }
+    .selection-label { min-height: 18px; margin-top: 6px; text-align: right; color: var(--mid); font-size: 10px; }
+
+    .section-actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+      padding: 42px 0 0;
+    }
+    .section-actions-right { display: flex; gap: 12px; align-items: center; }
+    .remaining-note { color: var(--mid); font-size: 12px; }
+
+    /* Results */
+    .results-wrap {
+      width: min(1240px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: clamp(46px, 7vw, 100px) 0 100px;
+    }
+    .results-top {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 280px;
+      gap: 60px;
+      align-items: end;
+      padding-bottom: 44px;
+      border-bottom: 1px solid var(--black);
+    }
+    .overall-score {
+      background: var(--black);
+      color: var(--paper);
+      min-height: 280px;
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .overall-score span { text-transform: uppercase; letter-spacing: .1em; font-size: 11px; color: rgba(255,255,255,.68); }
+    .overall-score strong { font-size: 88px; line-height: .8; font-weight: 500; letter-spacing: -.08em; }
+    .overall-score small { font-size: 14px; color: rgba(255,255,255,.74); }
+    .result-disclaimer { margin: 22px 0 0; max-width: 660px; color: var(--mid); font-size: 13px; }
+    .score-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 28px; }
+    .score-card { background: var(--paper); border: 1px solid var(--line); padding: 22px; min-height: 180px; display: flex; flex-direction: column; }
+    .score-card-top { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
+    .score-card-code { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--mid); }
+    .score-card-value { font-size: 34px; letter-spacing: -.05em; font-weight: 500; }
+    .score-card h3 { margin: 14px 0 0; font-size: 17px; line-height: 1.15; font-weight: 600; }
+    .score-bar { height: 2px; background: var(--soft-line); margin-top: auto; overflow: hidden; }
+    .score-bar span { display: block; height: 100%; background: var(--black); width: 0; }
+    .score-card small { margin-top: 10px; color: var(--mid); font-size: 11px; }
+    .priorities {
+      margin-top: 60px;
+      display: grid;
+      grid-template-columns: 310px minmax(0,1fr);
+      gap: 60px;
+      align-items: start;
+    }
+    .priorities h2 { margin: 0; font-size: 38px; line-height: 1; letter-spacing: -.05em; font-weight: 500; }
+    .priorities > div:first-child p { color: var(--mid); font-size: 14px; }
+    .priority-list { border-top: 1px solid var(--black); }
+    .priority-item { display: grid; grid-template-columns: 44px minmax(0,1fr) auto; gap: 16px; align-items: baseline; padding: 19px 0; border-bottom: 1px solid var(--line); }
+    .priority-item-number { color: var(--mid); font-size: 11px; }
+    .priority-item h3 { margin: 0; font-size: 18px; font-weight: 500; }
+    .priority-item p { margin: 5px 0 0; color: var(--mid); font-size: 12px; }
+    .priority-item strong { font-size: 23px; font-weight: 500; letter-spacing: -.04em; }
+    .results-actions {
+      margin-top: 64px;
+      padding-top: 28px;
+      border-top: 1px solid var(--black);
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .submission-note { width: 100%; color: var(--mid); font-size: 12px; margin: 4px 0 0; }
+    .danger-link { margin-left: auto; border: 0; background: transparent; text-decoration: underline; color: var(--mid); cursor: pointer; font-size: 12px; }
+
+    /* Toast + modal */
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: max(24px, env(safe-area-inset-bottom));
+      z-index: 1000;
+      transform: translate(-50%, 130%);
+      background: var(--black);
+      color: var(--paper);
+      padding: 13px 18px;
+      min-width: min(420px, calc(100% - 32px));
+      text-align: center;
+      font-size: 13px;
+      box-shadow: var(--shadow);
+      transition: transform .25s ease, opacity .2s ease;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .toast.is-visible { transform: translate(-50%, 0); opacity: 1; visibility: visible; }
+    .toast:empty { display: none; }
+    dialog {
+      width: min(520px, calc(100% - 32px));
+      border: 0;
+      padding: 0;
+      box-shadow: 0 30px 100px rgba(0,0,0,.3);
+    }
+    dialog::backdrop { background: rgba(0,0,0,.68); }
+    .dialog-content { padding: 30px; }
+    .dialog-content h2 { margin: 0; font-size: 28px; letter-spacing: -.04em; }
+    .dialog-content p { margin: 14px 0 0; color: var(--mid); }
+    .dialog-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 28px; }
+
+    /* Responsive */
+    @media (max-width: 1120px) {
+      .welcome-view { display: block; }
+      .hero-photo { inset: 0; }
+      .hero-panel { display: none; }
+      .hero-copy { width: min(760px, 84vw); }
+      .hero-main { background: linear-gradient(90deg, rgba(0,0,0,.22), rgba(0,0,0,.68)); }
+      .survey-shell { grid-template-columns: 240px minmax(0, 1fr); }
+      .section-nav { padding-left: 22px; }
+      .question-card { grid-template-columns: minmax(0, 1fr) 360px; gap: 20px; }
+      .scale-ribbon { grid-template-columns: minmax(120px, 1fr) repeat(6, minmax(44px, 60px)); }
+      .score-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 820px) {
+      :root { --header-h: 64px; }
+      .app-header { grid-template-columns: 1fr auto; padding: 0 16px; }
+      .app-brand small, .save-status { display: none; }
+      .global-progress { grid-column: 1 / -1; position: absolute; left: 0; right: 0; bottom: -1px; display: block; }
+      .global-progress strong, .global-progress > span { display: none; }
+      .progress-track { height: 2px; }
+      .profile-wrap { grid-template-columns: 1fr; width: min(100% - 32px, 720px); padding-top: 52px; }
+      .profile-side { position: static; order: -1; }
+      .survey-shell { display: block; }
+      .section-nav { display: none; }
+      .survey-main { padding: 0 18px 70px; }
+      .mobile-section-tabs {
+        position: sticky;
+        top: var(--header-h);
+        z-index: 50;
+        display: flex;
+        overflow-x: auto;
+        gap: 7px;
+        padding: 10px 0;
+        background: rgba(255,255,255,.97);
+        border-bottom: 1px solid var(--line);
+        scrollbar-width: none;
+      }
+      .mobile-section-tabs::-webkit-scrollbar { display: none; }
+      .mobile-section-tab {
+        flex: 0 0 auto;
+        min-width: 74px;
+        height: 38px;
+        padding: 0 12px;
+        border: 1px solid var(--line);
+        background: var(--paper);
+        font-size: 11px;
+        font-weight: 700;
+      }
+      .mobile-section-tab[aria-current="step"] { background: var(--black); color: var(--paper); border-color: var(--black); }
+      .section-header { padding: 42px 0 26px; grid-template-columns: 1fr; gap: 14px; }
+      .section-stat { text-align: left; display: flex; align-items: baseline; gap: 8px; }
+      .section-stat strong { font-size: 28px; }
+      .scale-ribbon-wrap { top: calc(var(--header-h) + 59px); margin: 0 -18px; padding: 0 18px; overflow-x: auto; }
+      .scale-ribbon { min-width: 720px; }
+      .question-card { grid-template-columns: 1fr; gap: 15px; padding: 20px 0; }
+      .question-copy { grid-template-columns: 34px 1fr; }
+      .likert-options { gap: 6px; }
+      .scale-option span { min-height: 46px; }
+      .selection-label { text-align: left; }
+      .section-actions { align-items: flex-start; flex-direction: column; }
+      .section-actions-right { width: 100%; }
+      .section-actions-right .button { flex: 1; }
+      .results-top { grid-template-columns: 1fr; }
+      .overall-score { min-height: 220px; }
+      .score-grid { grid-template-columns: 1fr 1fr; }
+      .priorities { grid-template-columns: 1fr; gap: 26px; }
+      .danger-link { width: 100%; margin-left: 0; text-align: left; padding: 12px 0; }
+    }
+
+    @media (max-width: 560px) {
+      .hero-main { padding: 22px 18px 28px; }
+      .hero-copy { width: 100%; padding-top: 20vh; }
+      .hero-copy h1 { font-size: clamp(48px, 16vw, 74px); }
+      .hero-copy > p { font-size: 17px; }
+      .hero-actions .button { width: 100%; }
+      .hero-meta { gap: 7px 12px; }
+      .hero-meta span + span::before { display: none; }
+      .profile-form { grid-template-columns: 1fr; }
+      .field-full { grid-column: auto; }
+      .profile-actions { grid-column: auto; }
+      .profile-actions .button { width: 100%; }
+      .profile-copy h1, .results-intro h1 { font-size: 48px; }
+      .section-header h1 { font-size: 52px; }
+      .question-copy p { font-size: 16px; }
+      .likert-options { grid-template-columns: repeat(6, minmax(42px, 1fr)); overflow-x: auto; }
+      .scale-option span { min-width: 42px; }
+      .group-header { grid-template-columns: auto 1fr; }
+      .group-progress { grid-column: 2; }
+      .score-grid { grid-template-columns: 1fr; }
+      .results-wrap { width: min(100% - 28px, 1240px); }
+      .priority-item { grid-template-columns: 30px minmax(0,1fr) auto; }
+      .results-actions .button { width: 100%; }
+      .dialog-actions { flex-direction: column-reverse; }
+      .dialog-actions .button { width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+
+    @media print {
+      .app-header, .results-actions, .toast, dialog { display: none !important; }
+      body, .results-view { background: #fff !important; }
+      .results-wrap { width: 100%; padding: 0; }
+      .results-top { grid-template-columns: 1fr 230px; }
+      .overall-score { min-height: 220px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .score-grid { grid-template-columns: repeat(5, 1fr); }
+      .score-card { break-inside: avoid; }
+      .priorities { break-inside: avoid; }
+    }
+  
+
+    /* Brand image supplied by the user */
+    .brand-image {
+      display: block;
+      width: auto;
+      object-fit: contain;
+      object-position: center;
+    }
+    .hero-logo {
+      width: clamp(150px, 14vw, 220px);
+      max-height: 94px;
+      filter: drop-shadow(0 10px 24px rgba(0,0,0,.28));
+    }
+    .app-logo {
+      width: 118px;
+      max-height: 46px;
+    }
+    .app-header {
+      grid-template-columns: minmax(160px, .8fr) minmax(260px, 2fr) minmax(160px, .8fr);
+    }
+    .global-progress {
+      grid-template-columns: auto minmax(120px, 1fr) auto;
+    }
+    .header-tools .icon-button:disabled {
+      opacity: .36;
+      cursor: not-allowed;
+    }
+    .profile-side p:last-child { margin-bottom: 0; }
+    .results-actions { justify-content: flex-start; }
+    .completion-copy {
+      max-width: 650px;
+      color: var(--mid);
+      font-size: 13px;
+      margin: 0 0 4px;
+      width: 100%;
+    }
+
+    /* Three-step completion workflow */
+    .workflow-dialog {
+      width: min(900px, calc(100% - 28px));
+      max-height: min(92svh, 920px);
+      overflow: auto;
+      background: var(--paper);
+    }
+    .workflow-dialog .dialog-content { padding: clamp(24px, 4vw, 44px); }
+    .workflow-head {
+      position: relative;
+      display: grid;
+      grid-template-columns: 120px minmax(0,1fr);
+      gap: 24px;
+      align-items: start;
+      padding-bottom: 30px;
+      border-bottom: 1px solid var(--black);
+    }
+    .workflow-head .brand-image { width: 120px; max-height: 54px; }
+    .workflow-head > div { min-width: 0; }
+    .workflow-head h2 {
+      margin: 0;
+      padding-right: 54px;
+      max-width: 100%;
+      font-size: clamp(34px, 4.2vw, 50px);
+      line-height: .98;
+      letter-spacing: -.055em;
+      font-weight: 500;
+      text-wrap: balance;
+    }
+    .workflow-head p {
+      margin: 10px 44px 0 0;
+      max-width: 620px;
+      color: var(--mid);
+      font-size: 14px;
+    }
+    .dialog-close {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      cursor: pointer;
+      font-size: 22px;
+      line-height: 1;
+    }
+    .workflow-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .workflow-step {
+      display: grid;
+      grid-template-columns: 52px minmax(0,1fr) auto;
+      gap: 20px;
+      align-items: start;
+      padding: 26px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .workflow-step-number {
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--black);
+      display: grid;
+      place-items: center;
+      font-weight: 650;
+    }
+    .workflow-step.is-complete .workflow-step-number {
+      background: var(--black);
+      color: var(--paper);
+    }
+    .workflow-step h3 {
+      margin: 0;
+      font-size: 21px;
+      line-height: 1.15;
+      letter-spacing: -.025em;
+      font-weight: 600;
+    }
+    .workflow-step p {
+      margin: 8px 0 0;
+      color: var(--mid);
+      font-size: 13px;
+      max-width: 620px;
+    }
+    .workflow-step-action {
+      min-width: 190px;
+      display: grid;
+      gap: 10px;
+      justify-items: stretch;
+    }
+    .workflow-status {
+      min-height: 18px;
+      color: var(--mid);
+      font-size: 11px;
+      text-align: right;
+    }
+    .workflow-step.is-complete .workflow-status { color: var(--black); font-weight: 650; }
+    .workflow-email-row {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) auto;
+      gap: 10px;
+      margin-top: 16px;
+      max-width: 650px;
+    }
+    .workflow-email-row input {
+      width: 100%;
+      min-height: 50px;
+      border: 1px solid var(--black);
+      border-radius: 0;
+      padding: 11px 13px;
+      background: var(--paper);
+    }
+    .workflow-email-error {
+      min-height: 18px;
+      margin-top: 6px;
+      color: #8b0000;
+      font-size: 11px;
+    }
+    .workflow-confirm {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-top: 14px;
+      padding: 13px 14px;
+      background: var(--wash);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+    .workflow-confirm input { margin-top: 2px; }
+    .workflow-final-note {
+      margin-top: 22px;
+      color: var(--mid);
+      font-size: 11px;
+    }
+    .workflow-error {
+      min-height: 20px;
+      margin: 16px 0 0;
+      color: #8b0000;
+      font-size: 12px;
+    }
+
+    /* Completion screen: intentionally contains no further actions */
+    .final-view {
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: 28px;
+      background: var(--black);
+      color: var(--paper);
+      text-align: center;
+    }
+    .final-panel { width: min(800px, 100%); }
+    .final-panel .brand-image {
+      width: min(240px, 65vw);
+      max-height: 108px;
+      margin: 0 auto 44px;
+    }
+    .final-label {
+      margin: 0 0 18px;
+      font-size: 12px;
+      font-weight: 650;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.58);
+    }
+    .final-panel h1 {
+      margin: 0;
+      font-size: clamp(46px, 7vw, 92px);
+      line-height: .94;
+      letter-spacing: -.06em;
+      font-weight: 500;
+      text-wrap: balance;
+    }
+    .final-panel > p:last-child {
+      max-width: 620px;
+      margin: 28px auto 0;
+      font-size: clamp(18px, 2vw, 24px);
+      line-height: 1.4;
+      color: rgba(255,255,255,.72);
+    }
+
+    @media (max-width: 820px) {
+      .app-header { grid-template-columns: 1fr auto; }
+      .app-logo { width: 100px; max-height: 40px; }
+      .global-progress { grid-template-columns: 1fr auto; }
+      .global-progress > span:first-child { display: none; }
+      .workflow-head { grid-template-columns: 1fr; }
+      .workflow-head .brand-image { width: 110px; }
+      .workflow-step { grid-template-columns: 42px minmax(0,1fr); }
+      .workflow-step-action { grid-column: 2; min-width: 0; width: 100%; }
+      .workflow-status { text-align: left; }
+    }
+    @media (max-width: 560px) {
+      .hero-logo { width: 150px; max-height: 66px; }
+      .workflow-dialog { width: calc(100% - 16px); }
+      .workflow-dialog .dialog-content { padding: 20px; }
+      .workflow-head h2 { font-size: 38px; }
+      .workflow-email-row { grid-template-columns: 1fr; }
+      .workflow-email-row .button { width: 100%; }
+      .workflow-step { grid-template-columns: 34px minmax(0,1fr); gap: 14px; }
+      .workflow-step-number { width: 32px; height: 32px; }
+      .final-panel .brand-image { margin-bottom: 34px; }
+    }
+
+    /* Welcome screen — clean black-and-white layout without photography */
+    .welcome-view {
+      display: block;
+      position: relative;
+      min-height: 100svh;
+      overflow: hidden;
+      background: var(--black);
+      color: var(--paper);
+    }
+    .welcome-view .hero-main {
+      position: relative;
+      z-index: 2;
+      min-height: 100svh;
+      width: 100%;
+      padding: clamp(28px, 4vw, 70px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: var(--black);
+    }
+    .welcome-view .hero-copy {
+      width: min(790px, 100%);
+      margin-top: auto;
+      padding-top: 12vh;
+    }
+    .welcome-view .hero-copy > p {
+      max-width: 680px;
+    }
+
+    @media (max-width: 820px) {
+      .welcome-view .hero-main {
+        min-height: 100svh;
+        padding: 24px 20px 48px;
+      }
+      .welcome-view .hero-logo {
+        width: min(42vw, 165px);
+      }
+      .welcome-view .hero-copy {
+        width: 100%;
+        padding-top: 18vh;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .welcome-view .hero-copy {
+        padding-top: 14vh;
+      }
+      .welcome-view .hero-copy h1 {
+        font-size: clamp(48px, 16vw, 72px);
+      }
+    }
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Vai al contenuto principale</a>
+
+  <header class="app-header" id="appHeader" hidden>
+    <button class="app-brand" id="brandHomeButton" type="button" aria-label="Torna alla schermata iniziale">
+      <img class="brand-image app-logo" src="data:image/webp;base64,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" alt="">
+    </button>
+    <div class="global-progress" aria-label="Avanzamento complessivo">
+      <span>Avanzamento</span>
+      <div class="progress-track" aria-hidden="true"><div class="progress-fill" id="globalProgressFill"></div></div>
+      <strong id="globalProgressLabel">0%</strong>
+    </div>
+    <div class="header-tools">
+      <button class="icon-button" id="exitButton" type="button" disabled>Invia e chiudi</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="view welcome-view" id="welcomeView" aria-labelledby="welcomeTitle">
+      <div class="hero-main">
+        <img class="brand-image hero-logo" src="data:image/webp;base64,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" alt="Zara Campus">
+        <div class="hero-copy">
+          <p class="eyebrow">SCANBOOK</p>
+          <h1 id="welcomeTitle">Il tuo punto di partenza</h1>
+          <p>Questo Scanbook è un’autovalutazione delle competenze, delle conoscenze e dei comportamenti collegati al tuo ruolo. Indica la frequenza con cui ti riconosci in ciascuna affermazione: il risultato sarà il tuo profilo di partenza per il percorso nel Campus.</p>
+          <div class="hero-actions">
+            <button class="button button-light" id="primaryStartButton" type="button">
+              <span id="primaryStartLabel">Inizia lo Scanbook</span><span class="button-arrow" aria-hidden="true">→</span>
+            </button>
+          </div>
+          <div class="hero-meta" aria-label="Informazioni sul questionario">
+            <span>5 aree</span>
+            <span>circa 20–25 minuti</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="view profile-view" id="profileView" hidden aria-labelledby="profileTitle">
+      <div class="profile-wrap">
+        <div class="profile-copy">
+          <p class="step-label">00 / Profilo</p>
+          <h1 id="profileTitle">Prima di iniziare.</h1>
+          <p>Inserisci i dati necessari per collegare il tuo profilo Scanbook al percorso formativo nel Campus. Tutti i campi sono obbligatori.</p>
+
+          <form class="profile-form" id="profileForm" novalidate>
+            <div class="field field-full">
+              <label for="participantName">Nome e cognome *</label>
+              <input id="participantName" name="participantName" type="text" autocomplete="name" placeholder="Es. Mario Rossi" required>
+              <span class="field-error" id="participantNameError"></span>
+            </div>
+            <div class="field">
+              <label for="employeeCode">Codice dipendente *</label>
+              <input id="employeeCode" name="employeeCode" type="text" inputmode="numeric" autocomplete="off" placeholder="Es. 00123456" required>
+              <span class="field-error" id="employeeCodeError"></span>
+            </div>
+            <div class="field">
+              <label for="storeCode">Codice negozio *</label>
+              <input id="storeCode" name="storeCode" type="text" inputmode="numeric" autocomplete="organization" placeholder="Es. 1234" required>
+              <span class="field-error" id="storeCodeError"></span>
+            </div>
+            <div class="field field-full">
+              <label for="participantRole">Ruolo *</label>
+              <select id="participantRole" name="participantRole" required>
+                <option value="">Seleziona</option>
+                <option>Store Director</option>
+                <option>Store Manager</option>
+                <option>Assistant Store Manager</option>
+                <option>Department Manager</option>
+                <option>Store Customer Experience Manager</option>
+                <option>Store People&amp;Process</option>
+                <option>Store Product Manager</option>
+              </select>
+              <span class="field-error" id="participantRoleError"></span>
+            </div>
+            <div class="profile-actions">
+              <button class="button" type="submit">Entra nello Scanbook <span class="button-arrow" aria-hidden="true">→</span></button>
+            </div>
+          </form>
+        </div>
+
+        <aside class="profile-side">
+          <h2>Scala di risposta</h2>
+          <ol class="scale-list">
+            <li><strong>1</strong><span>Quasi mai · fino al 25%</span></li>
+            <li><strong>2</strong><span>Raramente</span></li>
+            <li><strong>3</strong><span>A volte · circa 50–55%</span></li>
+            <li><strong>4</strong><span>Spesso</span></li>
+            <li><strong>5</strong><span>Quasi sempre · oltre l’80%</span></li>
+          </ol>
+          <p>Usa “N/V” quando un’affermazione non è applicabile al tuo ruolo o non può essere valutata in modo attendibile. Le risposte N/V non entrano nel calcolo delle medie.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="view survey-view" id="surveyView" hidden aria-labelledby="sectionTitle">
+      <div class="survey-shell">
+        <aside class="section-nav" aria-label="Aree del questionario">
+          <p class="section-nav-title">Le 5 aree</p>
+          <nav class="section-links" id="sectionLinks"></nav>
+          <p class="nav-note">Puoi passare da un’area all’altra. Prima del riepilogo, ogni affermazione deve avere una risposta oppure essere indicata come N/V.</p>
+        </aside>
+
+        <div class="survey-main">
+          <nav class="mobile-section-tabs" id="mobileSectionTabs" aria-label="Aree del questionario"></nav>
+
+          <header class="section-header">
+            <div>
+              <p class="section-kicker" id="sectionKicker">01 / H&amp;S</p>
+              <h1 id="sectionTitle">Health &amp; Safety</h1>
+              <p id="sectionDescription">Salute, sicurezza, responsabilità e cultura preventiva.</p>
+            </div>
+            <div class="section-stat" aria-live="polite">
+              <strong id="sectionAnswered">0/0</strong>
+              <span>completate</span>
+            </div>
+          </header>
+
+          <div class="scale-ribbon-wrap" aria-label="Legenda della scala">
+            <div class="scale-ribbon">
+              <div class="scale-ribbon-title">Indica quanto spesso l’affermazione descrive il tuo modo di lavorare.</div>
+              <div class="scale-ribbon-item"><strong>1</strong><span>Quasi mai</span></div>
+              <div class="scale-ribbon-item"><strong>2</strong><span>Raramente</span></div>
+              <div class="scale-ribbon-item"><strong>3</strong><span>A volte</span></div>
+              <div class="scale-ribbon-item"><strong>4</strong><span>Spesso</span></div>
+              <div class="scale-ribbon-item"><strong>5</strong><span>Quasi sempre</span></div>
+              <div class="scale-ribbon-item"><strong>N/V</strong><span>Non valutabile</span></div>
+            </div>
+          </div>
+
+          <div class="questions" id="questionsContainer"></div>
+
+          <div class="section-actions">
+            <span class="remaining-note" id="remainingNote" aria-live="polite"></span>
+            <div class="section-actions-right">
+              <button class="button button-secondary" id="previousSectionButton" type="button">← Indietro</button>
+              <button class="button" id="nextSectionButton" type="button">Area successiva →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="view results-view" id="resultsView" hidden aria-labelledby="resultsTitle">
+      <div class="results-wrap">
+        <div class="results-top">
+          <div class="results-intro">
+            <p class="step-label">Riepilogo / Scanbook</p>
+            <h1 id="resultsTitle">Il tuo profilo di partenza.</h1>
+            <p id="resultsParticipantLine">Una sintesi delle aree più consolidate e di quelle su cui può essere utile concentrare il percorso nel Campus.</p>
+            <p class="result-disclaimer">Questi risultati non rappresentano una valutazione di performance. Sono una fotografia auto-percepita, utile per orientare la riflessione manageriale e il percorso formativo.</p>
+          </div>
+          <div class="overall-score" aria-label="Punteggio medio complessivo">
+            <span>Media complessiva</span>
+            <strong id="overallScore">—</strong>
+            <small id="overallLabel">—</small>
+          </div>
+        </div>
+
+        <div class="score-grid" id="scoreGrid"></div>
+
+        <section class="priorities" aria-labelledby="prioritiesTitle">
+          <div>
+            <h2 id="prioritiesTitle">Aree di attenzione.</h2>
+            <p>Le tre aree tematiche con il punteggio medio più basso. Sono spunti di sviluppo, non etichette.</p>
+          </div>
+          <div class="priority-list" id="priorityList"></div>
+        </section>
+
+        <div class="results-actions">
+          <p class="completion-copy">Per concludere, salva il profilo in PDF, invialo al tuo Campus Director e infine invia i dati dello Scanbook.</p>
+          <button class="button" id="openCompletionButton" type="button">Invia e chiudi</button>
+          <button class="button button-secondary" id="backToSurveyButton" type="button">Rivedi le risposte</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="view final-view" id="finalView" hidden aria-labelledby="finalTitle">
+      <div class="final-panel">
+        <img class="brand-image" src="data:image/webp;base64,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" alt="Zara Campus">
+        <p class="final-label">SCANBOOK</p>
+        <h1 id="finalTitle">Grazie per aver completato il tuo Scanbook.</h1>
+        <p>Il tuo profilo accompagnerà il tuo percorso formativo nel Campus.</p>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <dialog class="workflow-dialog" id="workflowDialog" aria-labelledby="workflowTitle">
+    <div class="dialog-content">
+      <div class="workflow-head">
+        <img class="brand-image" src="data:image/webp;base64,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" alt="">
+        <div>
+          <h2 id="workflowTitle">Tre passaggi prima dell’invio.</h2>
+          <p>Completa i passaggi nell’ordine indicato. Il pulsante finale si attiverà soltanto dopo il salvataggio del PDF e l’invio al Campus Director.</p>
+        </div>
+        <button class="dialog-close" id="workflowCloseButton" type="button" aria-label="Chiudi">×</button>
+      </div>
+
+      <ol class="workflow-list">
+        <li class="workflow-step" id="workflowStep1">
+          <span class="workflow-step-number">1</span>
+          <div>
+            <h3>Salva il tuo profilo in PDF</h3>
+            <p>Genera e scarica il riepilogo personale in formato PDF. Questo passaggio è obbligatorio.</p>
+          </div>
+          <div class="workflow-step-action">
+            <button class="button button-secondary" id="savePdfButton" type="button">Salva il PDF</button>
+            <span class="workflow-status" id="pdfStatus">Da completare</span>
+          </div>
+        </li>
+
+        <li class="workflow-step" id="workflowStep2">
+          <span class="workflow-step-number">2</span>
+          <div>
+            <h3>Invia il profilo al tuo Campus Director</h3>
+            <p id="mailModeText">Inserisci l’indirizzo email del Campus Director. Il PDF salvato al passaggio 1 verrà allegato e inviato automaticamente.</p>
+            <div class="workflow-email-row">
+              <input id="campusDirectorEmail" type="email" inputmode="email" autocomplete="email" placeholder="Email Campus Director" aria-label="Email Campus Director">
+              <button class="button" id="sendProfileButton" type="button" disabled>Invia il PDF</button>
+            </div>
+            <div class="workflow-email-error" id="campusDirectorEmailError" aria-live="polite"></div>
+            <label class="workflow-confirm" id="manualEmailConfirmation" hidden aria-hidden="true">
+              <input id="emailSentConfirm" type="checkbox" tabindex="-1">
+              <span>Invio completato.</span>
+            </label>
+          </div>
+          <div class="workflow-step-action">
+            <span class="workflow-status" id="emailStatus">Da completare</span>
+          </div>
+        </li>
+
+        <li class="workflow-step" id="workflowStep3">
+          <span class="workflow-step-number">3</span>
+          <div>
+            <h3>Invia i dati definitivamente</h3>
+            <p>Dopo i primi due passaggi puoi completare lo Scanbook e chiudere la schermata.</p>
+          </div>
+          <div class="workflow-step-action">
+            <button class="button" id="finalSubmitButton" type="button" disabled>Invia i dati</button>
+            <span class="workflow-status" id="finalStatus">In attesa</span>
+          </div>
+        </li>
+      </ol>
+      <p class="workflow-final-note" id="workflowModeNote"></p>
+      <p class="workflow-error" id="workflowError" aria-live="assertive"></p>
+    </div>
+  </dialog>
+
+  <noscript>Per compilare questo questionario è necessario attivare JavaScript nel browser.</noscript>
+
+  <script>
+    "use strict";
+
+    /*
+      powerAutomateUrl: endpoint per la raccolta finale dei dati.
+      campusDirectorMailFlowUrl: endpoint obbligatorio per inviare il PDF come
+      allegato tramite Power Automate e Office 365 Outlook. Una pagina GitHub
+      statica non può allegare automaticamente un file attraverso un link mailto.
+    */
+    const CONFIG = {
+      powerAutomateUrl: "",
+      campusDirectorMailFlowUrl: "",
+      surveyId: "zara-campus-scanbook",
+      surveyVersion: "3.0.0",
+      locale: "it-IT"
+    };
+
+    const SECTIONS = [{"code":"H&S","title":"Health & Safety","description":"Salute, sicurezza, responsabilità e cultura preventiva.","groups":[{"title":"Formazione obbligatoria di base","questions":[{"id":"S01G01Q01","text":"Completo e mantengo aggiornata la formazione obbligatoria prevista per il mio ruolo.","ordinal":1},{"id":"S01G01Q02","text":"Applico le regole base di sicurezza e le procedure previste.","ordinal":2}],"id":"s1g1"},{"title":"Gestione quotidiana","questions":[{"id":"S01G02Q01","text":"Mantengo un ambiente di lavoro sicuro nella gestione quotidiana.","ordinal":3},{"id":"S01G02Q02","text":"Tutelo attivamente la salute e la sicurezza delle persone del mio team.","ordinal":4},{"id":"S01G02Q03","text":"Riconosco e gestisco tempestivamente i primi segnali di rischio.","ordinal":5},{"id":"S01G02Q04","text":"Presto attenzione al benessere del team nelle decisioni quotidiane.","ordinal":6}],"id":"s1g2"},{"title":"Ruolo operativo più ampio","questions":[{"id":"S01G03Q01","text":"Gestisco attivamente i rischi presenti nel mio contesto di lavoro.","ordinal":7},{"id":"S01G03Q02","text":"Gestisco correttamente un incidente quando si verifica.","ordinal":8},{"id":"S01G03Q03","text":"Formo il personale sui temi di salute e sicurezza.","ordinal":9},{"id":"S01G03Q04","text":"Mi assumo responsabilità dirette e visibili in ambito H&S.","ordinal":10}],"id":"s1g3"},{"title":"Expertise strategica","questions":[{"id":"S01G04Q01","text":"Aggiorno il mio livello di specializzazione H&S, anche attraverso certificazioni quando previste.","ordinal":11},{"id":"S01G04Q02","text":"Fornisco indicazioni affidabili su normative e sistemi H&S, come ISO 45001.","ordinal":12},{"id":"S01G04Q03","text":"Utilizzo KPI e dati per guidare il miglioramento continuo della sicurezza.","ordinal":13}],"id":"s1g4"},{"title":"Filo conduttore trasversale","questions":[{"id":"S01G05Q01","text":"Do il buon esempio in tema di salute e sicurezza.","ordinal":14},{"id":"S01G05Q02","text":"Mantengo una vigilanza costante sull’ambiente di lavoro.","ordinal":15},{"id":"S01G05Q03","text":"Comunico in modo chiaro ed efficace i temi di salute e sicurezza.","ordinal":16},{"id":"S01G05Q04","text":"Formo e motivo il team a mantenere comportamenti sicuri.","ordinal":17}],"id":"s1g5"}],"id":"section-1","ordinal":1},{"code":"PEOPLE","title":"People","description":"Leadership, talenti, recruiting, conformità e performance.","groups":[{"title":"Leadership e competenze relazionali","questions":[{"id":"S02G01Q01","text":"Guido il team con chiarezza, gestendo conflitti e imprevisti con organizzazione.","ordinal":18},{"id":"S02G01Q02","text":"Comunico in modo efficace e delego responsabilizzando le persone.","ordinal":19},{"id":"S02G01Q03","text":"Utilizzo correttamente i canali di comunicazione e informazione del negozio.","ordinal":20},{"id":"S02G01Q04","text":"Verifico e miglioro l’efficacia del morning meeting.","ordinal":21},{"id":"S02G01Q05","text":"Organizzo momenti di team building con obiettivi chiari.","ordinal":22}],"id":"s2g1"},{"title":"Esperienza dipendenti e sviluppo talenti","questions":[{"id":"S02G02Q01","text":"Investo tempo nella formazione e nei piani di crescita del team.","ordinal":23},{"id":"S02G02Q02","text":"Realizzo talk e valutazioni periodiche, promuovendo diversità e inclusione.","ordinal":24},{"id":"S02G02Q03","text":"Pianifico e seguo nel tempo un piano di formazione specifico per la mia squadra.","ordinal":25},{"id":"S02G02Q04","text":"Supervisiono più team o manager mantenendo una visione d’insieme.","ordinal":26},{"id":"S02G02Q05","text":"Preparo persone del team a ricoprire ruoli di maggiore responsabilità.","ordinal":27}],"id":"s2g2"},{"title":"Recruiting e conoscenza del negozio","questions":[{"id":"S02G03Q01","text":"Seguo un processo strutturato per il reclutamento in negozio.","ordinal":28},{"id":"S02G03Q02","text":"Valuto in modo consapevole background, esperienze e potenziale dei candidati.","ordinal":29},{"id":"S02G03Q03","text":"Garantisco un onboarding chiaro e strutturato fin dai primi tre giorni.","ordinal":30},{"id":"S02G03Q04","text":"Mantengo una lettura aggiornata della composizione, dei punti di forza e dei bisogni del team.","ordinal":31},{"id":"S02G03Q05","text":"Affronto tempestivamente conversazioni su atteggiamenti e comportamenti, trasformandole in azioni concrete.","ordinal":32}],"id":"s2g3"},{"title":"Dati HR, conformità e gestione delle prestazioni","questions":[{"id":"S02G04Q01","text":"Gestisco correttamente file personali, assenteismo e normative HR.","ordinal":33},{"id":"S02G04Q02","text":"Mantengo standard adeguati di professionalità nel team.","ordinal":34},{"id":"S02G04Q03","text":"Monitoro KPI, vendite, produttività e rotazione del team.","ordinal":35},{"id":"S02G04Q04","text":"Pianifico la successione per i ruoli chiave.","ordinal":36},{"id":"S02G04Q05","text":"Presidio benessere, salute e sicurezza e clima aziendale.","ordinal":37}],"id":"s2g4"},{"title":"Aggiornamento continuo e motivazione","questions":[{"id":"S02G05Q01","text":"Mi tengo aggiornato/a e collaboro attivamente con Retail Manager, HR e zona pilota.","ordinal":38},{"id":"S02G05Q02","text":"Propongo proattivamente miglioramenti per il negozio e per il team.","ordinal":39},{"id":"S02G05Q03","text":"Trasformo i feedback emersi nei talk semestrali in cambiamenti concreti nel mio lavoro.","ordinal":40},{"id":"S02G05Q04","text":"Monitoro e sostengo il livello di motivazione del team.","ordinal":41}],"id":"s2g5"}],"id":"section-2","ordinal":2},{"code":"P&P","title":"P&P","description":"Operations, magazzino, produttività, ordini e customer experience.","groups":[{"title":"Operations e magazzino","questions":[{"id":"S03G01Q01","text":"Organizzo le attività operative quotidiane affinché procedano senza intoppi e senza dipendere dal mio intervento diretto.","ordinal":42},{"id":"S03G01Q02","text":"Applico la standardizzazione dei magazzini, inclusi layout e standard di gestione per reparto.","ordinal":43},{"id":"S03G01Q03","text":"Conosco e utilizzo la capacità del magazzino e i dati inseriti in My Stock Room.","ordinal":44},{"id":"S03G01Q04","text":"Rendo chiare le responsabilità relative all’occupazione e alla gestione del magazzino.","ordinal":45},{"id":"S03G01Q05","text":"Individuo e attivo opportunità di ottimizzazione strategica nell’operatività del negozio.","ordinal":46}],"id":"s3g1"},{"title":"People","questions":[{"id":"S03G02Q01","text":"Garantisco una formazione di base strutturata e continuativa per il team.","ordinal":47},{"id":"S03G02Q02","text":"Definisco un percorso chiaro per lo sviluppo dei talenti interni.","ordinal":48},{"id":"S03G02Q03","text":"Applico un processo di onboarding chiaro e strutturato per i nuovi assunti.","ordinal":49},{"id":"S03G02Q04","text":"Dimensiono il team in base ai volumi e alle diverse mansioni del negozio.","ordinal":50},{"id":"S03G02Q05","text":"Rendo lo sviluppo del team strategico, pianificato e non estemporaneo.","ordinal":51}],"id":"s3g2"},{"title":"Customer Experience e prodotto","questions":[{"id":"S03G03Q01","text":"Supervisiono con costanza tutti i touchpoint dell’esperienza cliente.","ordinal":52},{"id":"S03G03Q02","text":"Intercetto tempestivamente le criticità legate all’esperienza cliente.","ordinal":53},{"id":"S03G03Q03","text":"Guido il team verso standard di servizio progressivamente più alti.","ordinal":54}],"id":"s3g3"},{"title":"Merma e sicurezza","questions":[{"id":"S03G04Q01","text":"Conosco, controllo e condivido con il team la percentuale di merma e l’obiettivo annuale.","ordinal":55},{"id":"S03G04Q02","text":"Analizzo le cause che generano la merma nel punto vendita.","ordinal":56},{"id":"S03G04Q03","text":"Verifico regolarmente il corretto funzionamento dei dispositivi di sicurezza.","ordinal":57},{"id":"S03G04Q04","text":"Monitoro i reparti con la percentuale più alta di allarmi di merma.","ordinal":58}],"id":"s3g4"},{"title":"KPI, produttività e ordini","questions":[{"id":"S03G05Q01","text":"Comprendo i KPI principali del negozio e li collego alle azioni del team.","ordinal":59},{"id":"S03G05Q02","text":"Monitoro il dato di produttività e il suo andamento nel corso dell’anno.","ordinal":60},{"id":"S03G05Q03","text":"Conosco la media dei pacchi evasi e le percentuali di rifiuti e ritardi.","ordinal":61},{"id":"S03G05Q04","text":"Monitoro le richieste gestite con esito positivo per individuare opportunità di miglioramento.","ordinal":62},{"id":"S03G05Q05","text":"Interpreto i KPI in modo strategico per guidare i risultati di business.","ordinal":63}],"id":"s3g5"}],"id":"section-3","ordinal":3},{"code":"CX","title":"Customer Experience","description":"Servizio, camerini, reclami, immagine e qualità della relazione.","groups":[{"title":"Competenze individuali","questions":[{"id":"S04G01Q01","text":"Mi adatto ai diversi clienti cogliendone bisogni, emozioni e ritmo di acquisto.","ordinal":64},{"id":"S04G01Q02","text":"Pratico una vendita proattiva in tutti i touchpoint.","ordinal":65},{"id":"S04G01Q03","text":"Conosco il prodotto e propongo cross-selling rilevante.","ordinal":66},{"id":"S04G01Q04","text":"Contribuisco a creare un clima di team positivo.","ordinal":67},{"id":"S04G01Q05","text":"Gestisco stress e picchi di affluenza mantenendo alta la qualità del servizio.","ordinal":68}],"id":"s4g1"},{"title":"Gestione del negozio e camerini","questions":[{"id":"S04G02Q01","text":"Organizzo il negozio sulla base dei flussi e dei feedback dei clienti.","ordinal":69},{"id":"S04G02Q02","text":"Agisco con efficacia nella formazione, nella leadership e nella selezione del team.","ordinal":70},{"id":"S04G02Q03","text":"Guido le mie decisioni con KPI e dati, come mappe di calore e piani d’azione.","ordinal":71},{"id":"S04G02Q04","text":"Presidio rigorosamente i processi in camerino e dedico tempo manageriale alla loro osservazione.","ordinal":72},{"id":"S04G02Q05","text":"Intervengo sulla mancanza di presidio nei camerini per migliorare dinamiche ed esperienza cliente.","ordinal":73}],"id":"s4g2"},{"title":"Esperienza cliente: cura e reclamo","questions":[{"id":"S04G03Q01","text":"Osservo e comprendo la qualità dell’esperienza cliente nel negozio e le capacità relazionali del team.","ordinal":74},{"id":"S04G03Q02","text":"Utilizzo le richieste dei clienti per soddisfarne le esigenze e migliorare il servizio.","ordinal":75},{"id":"S04G03Q03","text":"Gestisco i reclami con metodo, tempestività e continuità.","ordinal":76}],"id":"s4g3"},{"title":"Formazione e immagine","questions":[{"id":"S04G04Q01","text":"Pianifico momenti di formazione per il team e ne verifico l’efficacia.","ordinal":77},{"id":"S04G04Q02","text":"Presidio l’immagine del team, incluse le uniformi, e ne parlo con regolarità.","ordinal":78},{"id":"S04G04Q03","text":"Intervengo tempestivamente quando rilevo non conformità nella formazione o nell’immagine del team.","ordinal":79}],"id":"s4g4"},{"title":"Cassa","questions":[{"id":"S04G05Q01","text":"Monitoro tempi e fasce orarie delle code in cassa.","ordinal":80},{"id":"S04G05Q02","text":"Conosco e gestisco il peso delle ACO nell’esperienza di cassa.","ordinal":81},{"id":"S04G05Q03","text":"Rendo fluidi per il cliente i processi di reso e vendita.","ordinal":82},{"id":"S04G05Q04","text":"Presidio le diverse attività da svolgere in cassa nel contatto con il cliente.","ordinal":83},{"id":"S04G05Q05","text":"Formo il team a gestire in modo efficiente i tempi di attesa in cassa.","ordinal":84}],"id":"s4g5"}],"id":"section-4","ordinal":4},{"code":"COMMERCIAL","title":"Commercial","description":"Prodotto, delivery, organizzazione, strategia e risultati.","groups":[{"title":"Prodotto","questions":[{"id":"S05G01Q01","text":"Aggiorno e monitoro con regolarità il piano vendita e garantisco che il planteamiento valorizzi il prodotto secondo gli standard.","ordinal":85},{"id":"S05G01Q02","text":"Applico con costanza gli standard di Merchandising e curo una vetrina coerente con l’immagine e con il cliente del negozio.","ordinal":86},{"id":"S05G01Q03","text":"Analizzo ogni sezione dal macro al micro, considerando il peso delle sezioni e dei relativi comprador.","ordinal":87},{"id":"S05G01Q04","text":"Gestisco il riassortimento e monitoro i KPI operativi.","ordinal":88}],"id":"s5g1"},{"title":"Delivery","questions":[{"id":"S05G02Q01","text":"Gestisco in modo efficiente gli arrivi merce.","ordinal":89},{"id":"S05G02Q02","text":"Raccolgo e trasmetto in modo strutturato feedback sulle nuove linee.","ordinal":90},{"id":"S05G02Q03","text":"Applico un metodo per intercettare tempestivamente i problemi di delivery.","ordinal":91},{"id":"S05G02Q04","text":"Comunico al team le criticità legate agli arrivi merce.","ordinal":92},{"id":"S05G02Q05","text":"Mi confronto con zona e centrale e gestisco in modo efficace i feedback di prodotto.","ordinal":93}],"id":"s5g2"},{"title":"Organizzazione","questions":[{"id":"S05G03Q01","text":"Pianifico il calendario commerciale con adeguato anticipo.","ordinal":94},{"id":"S05G03Q02","text":"Definisco piani settimanali chiari e condivisi con tutto il team.","ordinal":95},{"id":"S05G03Q03","text":"Bilancio priorità operative e imprevisti senza perdere il controllo della pianificazione.","ordinal":96}],"id":"s5g3"},{"title":"Strategia","questions":[{"id":"S05G04Q01","text":"Analizzo regolarmente le performance del punto vendita con dati concreti e costruisco una visione strategica.","ordinal":97},{"id":"S05G04Q02","text":"Conosco a fondo prodotto, cliente e competitor del mio mercato di riferimento.","ordinal":98},{"id":"S05G04Q03","text":"Investo tempo concreto nello sviluppo delle competenze del team.","ordinal":99}],"id":"s5g4"},{"title":"Competenze trasversali","questions":[{"id":"S05G05Q01","text":"Mantengo una visione strategica chiara per il negozio nei successivi 6–12 mesi.","ordinal":100},{"id":"S05G05Q02","text":"Comunico in modo efficace con team negozio, zona e centrale.","ordinal":101},{"id":"S05G05Q03","text":"Valuto e miglioro la mia capacità di gestione e motivazione del team.","ordinal":102},{"id":"S05G05Q04","text":"Utilizzo i KPI per guidare le decisioni, non solo per monitorare i risultati a posteriori.","ordinal":103},{"id":"S05G05Q05","text":"Investo tempo nella formazione, mia e del team.","ordinal":104}],"id":"s5g5"}],"id":"section-5","ordinal":5}];
+    const SCALE = {
+      "1": "Quasi mai",
+      "2": "Raramente",
+      "3": "A volte",
+      "4": "Spesso",
+      "5": "Quasi sempre",
+      "na": "Non valutabile"
+    };
+    const ALL_QUESTIONS = SECTIONS.flatMap(section =>
+      section.groups.flatMap(group =>
+        group.questions.map(question => ({
+          ...question,
+          sectionId: section.id,
+          sectionCode: section.code,
+          sectionTitle: section.title,
+          groupId: group.id,
+          groupTitle: group.title
+        }))
+      )
+    );
+
+    const DEFAULT_WORKFLOW = () => ({
+      pdfDownloaded: false,
+      pdfFileName: "",
+      email: "",
+      outlookOpened: false,
+      emailSent: false,
+      sendingEmail: false,
+      submitting: false
+    });
+
+    const DEFAULT_STATE = () => ({
+      participant: { name: "", employeeCode: "", storeCode: "", role: "" },
+      answers: {},
+      currentSection: 0,
+      startedAt: null,
+      updatedAt: null,
+      submittedAt: null,
+      submissionId: null,
+      workflow: DEFAULT_WORKFLOW()
+    });
+
+    let state = DEFAULT_STATE();
+    let toastTimer = null;
+    let profilePdfCache = null;
+
+    const els = {
+      appHeader: document.getElementById("appHeader"),
+      welcomeView: document.getElementById("welcomeView"),
+      profileView: document.getElementById("profileView"),
+      surveyView: document.getElementById("surveyView"),
+      resultsView: document.getElementById("resultsView"),
+      finalView: document.getElementById("finalView"),
+      primaryStartButton: document.getElementById("primaryStartButton"),
+      primaryStartLabel: document.getElementById("primaryStartLabel"),
+      brandHomeButton: document.getElementById("brandHomeButton"),
+      exitButton: document.getElementById("exitButton"),
+      globalProgressLabel: document.getElementById("globalProgressLabel"),
+      globalProgressFill: document.getElementById("globalProgressFill"),
+      profileForm: document.getElementById("profileForm"),
+      participantName: document.getElementById("participantName"),
+      employeeCode: document.getElementById("employeeCode"),
+      storeCode: document.getElementById("storeCode"),
+      participantRole: document.getElementById("participantRole"),
+      sectionLinks: document.getElementById("sectionLinks"),
+      mobileSectionTabs: document.getElementById("mobileSectionTabs"),
+      sectionKicker: document.getElementById("sectionKicker"),
+      sectionTitle: document.getElementById("sectionTitle"),
+      sectionDescription: document.getElementById("sectionDescription"),
+      sectionAnswered: document.getElementById("sectionAnswered"),
+      questionsContainer: document.getElementById("questionsContainer"),
+      remainingNote: document.getElementById("remainingNote"),
+      previousSectionButton: document.getElementById("previousSectionButton"),
+      nextSectionButton: document.getElementById("nextSectionButton"),
+      resultsParticipantLine: document.getElementById("resultsParticipantLine"),
+      overallScore: document.getElementById("overallScore"),
+      overallLabel: document.getElementById("overallLabel"),
+      scoreGrid: document.getElementById("scoreGrid"),
+      priorityList: document.getElementById("priorityList"),
+      openCompletionButton: document.getElementById("openCompletionButton"),
+      backToSurveyButton: document.getElementById("backToSurveyButton"),
+      workflowDialog: document.getElementById("workflowDialog"),
+      workflowCloseButton: document.getElementById("workflowCloseButton"),
+      workflowStep1: document.getElementById("workflowStep1"),
+      workflowStep2: document.getElementById("workflowStep2"),
+      workflowStep3: document.getElementById("workflowStep3"),
+      savePdfButton: document.getElementById("savePdfButton"),
+      pdfStatus: document.getElementById("pdfStatus"),
+      campusDirectorEmail: document.getElementById("campusDirectorEmail"),
+      campusDirectorEmailError: document.getElementById("campusDirectorEmailError"),
+      sendProfileButton: document.getElementById("sendProfileButton"),
+      mailModeText: document.getElementById("mailModeText"),
+      manualEmailConfirmation: document.getElementById("manualEmailConfirmation"),
+      emailSentConfirm: document.getElementById("emailSentConfirm"),
+      emailStatus: document.getElementById("emailStatus"),
+      finalSubmitButton: document.getElementById("finalSubmitButton"),
+      finalStatus: document.getElementById("finalStatus"),
+      workflowModeNote: document.getElementById("workflowModeNote"),
+      workflowError: document.getElementById("workflowError"),
+      toast: document.getElementById("toast")
+    };
+
+    function touchState() {
+      state.updatedAt = new Date().toISOString();
+      updateProgress();
+      updateWelcomeState();
+    }
+
+    function invalidateCompletionArtifacts() {
+      const email = state.workflow.email || "";
+      state.workflow = { ...DEFAULT_WORKFLOW(), email };
+      profilePdfCache = null;
+      state.submittedAt = null;
+      state.submissionId = null;
+      updateWorkflowUI();
+    }
+
+    function participantIsComplete() {
+      const p = state.participant;
+      return Boolean(p.name.trim() && p.employeeCode.trim() && p.storeCode.trim() && p.role.trim());
+    }
+
+    function allQuestionsAreComplete() {
+      return ALL_QUESTIONS.every(question => state.answers[question.id] !== undefined);
+    }
+
+    function setView(viewName) {
+      const mapping = {
+        welcome: els.welcomeView,
+        profile: els.profileView,
+        survey: els.surveyView,
+        results: els.resultsView,
+        final: els.finalView
+      };
+      Object.entries(mapping).forEach(([name, element]) => {
+        element.hidden = name !== viewName;
+      });
+      els.appHeader.hidden = viewName === "welcome" || viewName === "final";
+      document.body.dataset.view = viewName;
+      if (viewName === "final") {
+        window.clearTimeout(toastTimer);
+        els.toast.textContent = "";
+        els.toast.classList.remove("is-visible");
+      }
+      window.scrollTo({ top: 0, behavior: "instant" });
+      updateProgress();
+    }
+
+    function updateWelcomeState() {
+      const hasInSessionProgress = Boolean(state.startedAt || Object.keys(state.answers).length);
+      els.primaryStartLabel.textContent = hasInSessionProgress ? "Continua lo Scanbook" : "Inizia lo Scanbook";
+    }
+
+    function startOrResume() {
+      state.startedAt = state.startedAt || new Date().toISOString();
+      fillProfileForm();
+      if (participantIsComplete()) {
+        renderSurvey();
+        setView("survey");
+      } else {
+        setView("profile");
+        window.setTimeout(() => els.participantName.focus(), 80);
+      }
+      touchState();
+    }
+
+    function fillProfileForm() {
+      els.participantName.value = state.participant.name || "";
+      els.employeeCode.value = state.participant.employeeCode || "";
+      els.storeCode.value = state.participant.storeCode || "";
+      els.participantRole.value = state.participant.role || "";
+    }
+
+    function currentProfileValues() {
+      return {
+        name: els.participantName.value.trim(),
+        employeeCode: els.employeeCode.value.trim(),
+        storeCode: els.storeCode.value.trim(),
+        role: els.participantRole.value.trim()
+      };
+    }
+
+    function validateProfile() {
+      const values = currentProfileValues();
+      const errors = {
+        participantName: values.name ? "" : "Inserisci nome e cognome.",
+        employeeCode: values.employeeCode ? "" : "Inserisci il codice dipendente.",
+        storeCode: values.storeCode ? "" : "Inserisci il codice negozio.",
+        participantRole: values.role ? "" : "Seleziona il ruolo."
+      };
+      Object.entries(errors).forEach(([field, message]) => {
+        const input = document.getElementById(field);
+        const error = document.getElementById(`${field}Error`);
+        input.setAttribute("aria-invalid", message ? "true" : "false");
+        if (error) error.textContent = message;
+      });
+      const valid = !Object.values(errors).some(Boolean);
+      if (!valid) document.querySelector('[aria-invalid="true"]')?.focus();
+      return { valid, values };
+    }
+
+    function renderNavigation() {
+      const makeLink = (section, index, mobile = false) => {
+        const status = getSectionStatus(index);
+        if (mobile) {
+          return `<button type="button" class="mobile-section-tab" data-section-index="${index}" ${index === state.currentSection ? 'aria-current="step"' : ''}>${escapeHtml(section.code)}</button>`;
+        }
+        return `
+          <button type="button" class="section-link ${status.className}" data-section-index="${index}" ${index === state.currentSection ? 'aria-current="step"' : ''}>
+            <span class="section-link-number">${String(index + 1).padStart(2, "0")}</span>
+            <span class="section-link-code">${escapeHtml(section.code)}</span>
+            <span class="section-link-status" aria-label="${status.label}"></span>
+          </button>`;
+      };
+      els.sectionLinks.innerHTML = SECTIONS.map((section, index) => makeLink(section, index)).join("");
+      els.mobileSectionTabs.innerHTML = SECTIONS.map((section, index) => makeLink(section, index, true)).join("");
+      document.querySelectorAll("[data-section-index]").forEach(button => {
+        button.addEventListener("click", () => {
+          const index = Number(button.dataset.sectionIndex);
+          if (Number.isInteger(index)) goToSection(index);
+        });
+      });
+    }
+
+    function renderSurvey() {
+      if (!SECTIONS[state.currentSection]) state.currentSection = 0;
+      const active = SECTIONS[state.currentSection];
+      els.sectionKicker.textContent = `${String(state.currentSection + 1).padStart(2, "0")} / ${active.code}`;
+      els.sectionTitle.textContent = active.title;
+      els.sectionDescription.textContent = active.description;
+
+      let localNumber = 0;
+      els.questionsContainer.innerHTML = active.groups.map((group, groupIndex) => {
+        const answeredInGroup = group.questions.filter(q => state.answers[q.id] !== undefined).length;
+        const questions = group.questions.map(question => {
+          localNumber += 1;
+          const answer = state.answers[question.id];
+          const options = ["1", "2", "3", "4", "5", "na"].map(value => {
+            const label = value === "na" ? "N/V" : value;
+            const checked = String(answer) === value ? "checked" : "";
+            const extraClass = value === "na" ? " scale-option-na" : "";
+            return `
+              <label class="scale-option${extraClass}" title="${escapeHtml(SCALE[value])}">
+                <input type="radio" name="${question.id}" value="${value}" ${checked} aria-label="${escapeHtml(SCALE[value])}">
+                <span>${label}</span>
+              </label>`;
+          }).join("");
+          const selectedText = answer !== undefined ? SCALE[String(answer)] : "";
+          return `
+            <article class="question-card" id="card-${question.id}" data-question-id="${question.id}">
+              <div class="question-copy">
+                <span class="question-number">${String(localNumber).padStart(2, "0")}</span>
+                <p id="label-${question.id}">${escapeHtml(question.text)}</p>
+              </div>
+              <fieldset class="likert" aria-labelledby="label-${question.id}">
+                <legend class="sr-only">Scegli una risposta da 1 a 5 oppure non valutabile</legend>
+                <div class="likert-options">${options}</div>
+                <div class="selection-label" aria-live="polite">${escapeHtml(selectedText)}</div>
+              </fieldset>
+            </article>`;
+        }).join("");
+        return `
+          <section class="question-group" aria-labelledby="group-${group.id}">
+            <header class="group-header">
+              <span class="group-index">${String(groupIndex + 1).padStart(2, "0")}</span>
+              <h2 id="group-${group.id}">${escapeHtml(group.title)}</h2>
+              <span class="group-progress" data-group-progress="${group.id}">${answeredInGroup}/${group.questions.length}</span>
+            </header>
+            ${questions}
+          </section>`;
+      }).join("");
+
+      els.questionsContainer.querySelectorAll('input[type="radio"]').forEach(input => {
+        input.addEventListener("change", event => {
+          const questionId = event.target.name;
+          const value = event.target.value;
+          state.answers[questionId] = value === "na" ? "na" : Number(value);
+          invalidateCompletionArtifacts();
+          const card = document.getElementById(`card-${questionId}`);
+          card?.classList.remove("is-missing");
+          const label = card?.querySelector(".selection-label");
+          if (label) label.textContent = SCALE[value];
+          updateSectionCompletion();
+          renderNavigation();
+          touchState();
+        });
+      });
+
+      els.previousSectionButton.disabled = state.currentSection === 0;
+      els.nextSectionButton.textContent = state.currentSection === SECTIONS.length - 1 ? "Vedi riepilogo →" : "Area successiva →";
+      renderNavigation();
+      updateSectionCompletion();
+      updateProgress();
+    }
+
+    function getSectionQuestions(sectionIndex) {
+      return SECTIONS[sectionIndex].groups.flatMap(group => group.questions);
+    }
+
+    function getSectionStatus(sectionIndex) {
+      const questions = getSectionQuestions(sectionIndex);
+      const answered = questions.filter(q => state.answers[q.id] !== undefined).length;
+      if (answered === questions.length) return { className: "is-complete", label: "Completa" };
+      if (answered > 0) return { className: "is-partial", label: "In corso" };
+      return { className: "", label: "Da iniziare" };
+    }
+
+    function updateSectionCompletion() {
+      const section = SECTIONS[state.currentSection];
+      const questions = getSectionQuestions(state.currentSection);
+      const answered = questions.filter(q => state.answers[q.id] !== undefined).length;
+      const remaining = questions.length - answered;
+      els.sectionAnswered.textContent = `${answered}/${questions.length}`;
+      els.remainingNote.textContent = remaining === 0
+        ? "Area completa. Puoi proseguire."
+        : `${remaining} ${remaining === 1 ? "affermazione da completare" : "affermazioni da completare"}.`;
+      section.groups.forEach(group => {
+        const count = group.questions.filter(q => state.answers[q.id] !== undefined).length;
+        const node = document.querySelector(`[data-group-progress="${group.id}"]`);
+        if (node) node.textContent = `${count}/${group.questions.length}`;
+      });
+    }
+
+    function updateProgress() {
+      const answered = ALL_QUESTIONS.filter(q => state.answers[q.id] !== undefined).length;
+      const percent = Math.round((answered / ALL_QUESTIONS.length) * 100);
+      els.globalProgressLabel.textContent = `${percent}%`;
+      els.globalProgressFill.style.width = `${percent}%`;
+      const canClose = participantIsComplete() && answered === ALL_QUESTIONS.length;
+      els.exitButton.disabled = !canClose;
+      els.exitButton.title = canClose ? "Apri i passaggi conclusivi" : "Completa tutte le risposte prima di inviare";
+    }
+
+    function goToSection(index) {
+      state.currentSection = Math.max(0, Math.min(index, SECTIONS.length - 1));
+      renderSurvey();
+      touchState();
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+
+    function validateCurrentSection() {
+      const missing = getSectionQuestions(state.currentSection).filter(q => state.answers[q.id] === undefined);
+      document.querySelectorAll(".question-card.is-missing").forEach(card => card.classList.remove("is-missing"));
+      if (!missing.length) return true;
+      missing.forEach(q => document.getElementById(`card-${q.id}`)?.classList.add("is-missing"));
+      document.getElementById(`card-${missing[0].id}`)?.scrollIntoView({ behavior: "smooth", block: "center" });
+      showToast(`Completa ${missing.length} ${missing.length === 1 ? "affermazione" : "affermazioni"} prima di proseguire.`);
+      return false;
+    }
+
+    function validateAllQuestions() {
+      return ALL_QUESTIONS.filter(q => state.answers[q.id] === undefined);
+    }
+
+    function nextSection() {
+      if (!validateCurrentSection()) return;
+      if (state.currentSection < SECTIONS.length - 1) {
+        goToSection(state.currentSection + 1);
+        return;
+      }
+      const missing = validateAllQuestions();
+      if (missing.length) {
+        const first = ALL_QUESTIONS.find(q => q.id === missing[0].id);
+        const index = SECTIONS.findIndex(section => section.id === first.sectionId);
+        goToSection(index);
+        window.setTimeout(() => {
+          document.getElementById(`card-${first.id}`)?.classList.add("is-missing");
+          document.getElementById(`card-${first.id}`)?.scrollIntoView({ behavior: "smooth", block: "center" });
+        }, 80);
+        showToast(`Mancano ${missing.length} risposte nel questionario.`);
+        return;
+      }
+      renderResults();
+      setView("results");
+    }
+
+    function previousSection() {
+      if (state.currentSection > 0) goToSection(state.currentSection - 1);
+    }
+
+    function numericValues(questionIds) {
+      return questionIds.map(id => state.answers[id]).filter(value => typeof value === "number" && Number.isFinite(value));
+    }
+
+    function average(values) {
+      if (!values.length) return null;
+      return values.reduce((sum, value) => sum + value, 0) / values.length;
+    }
+
+    function formatScore(value) {
+      return value === null ? "—" : value.toLocaleString(CONFIG.locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+    }
+
+    function maturityLabel(value) {
+      if (value === null) return "Non valutabile";
+      if (value < 2) return "Priorità di sviluppo";
+      if (value < 3) return "Da consolidare";
+      if (value < 3.8) return "In evoluzione";
+      if (value < 4.5) return "Solido";
+      return "Punto di forza";
+    }
+
+    function calculateScores() {
+      const sectionScores = SECTIONS.map(section => {
+        const ids = section.groups.flatMap(group => group.questions.map(q => q.id));
+        const score = average(numericValues(ids));
+        const groups = section.groups.map(group => ({
+          sectionCode: section.code,
+          sectionTitle: section.title,
+          groupId: group.id,
+          groupTitle: group.title,
+          score: average(numericValues(group.questions.map(q => q.id)))
+        }));
+        return { sectionId: section.id, code: section.code, title: section.title, score, groups };
+      });
+      const overall = average(numericValues(ALL_QUESTIONS.map(q => q.id)));
+      return { overall, sections: sectionScores };
+    }
+
+    function renderResults() {
+      const scores = calculateScores();
+      const p = state.participant;
+      els.resultsParticipantLine.textContent = `${p.name} · Codice dipendente ${p.employeeCode} · Negozio ${p.storeCode} · ${p.role}.`;
+      els.overallScore.textContent = formatScore(scores.overall);
+      els.overallLabel.textContent = maturityLabel(scores.overall);
+      els.scoreGrid.innerHTML = scores.sections.map((section, index) => {
+        const width = section.score === null ? 0 : (section.score / 5) * 100;
+        return `
+          <article class="score-card">
+            <div class="score-card-top">
+              <span class="score-card-code">${String(index + 1).padStart(2, "0")} / ${escapeHtml(section.code)}</span>
+              <strong class="score-card-value">${formatScore(section.score)}</strong>
+            </div>
+            <h3>${escapeHtml(section.title)}</h3>
+            <div class="score-bar" aria-hidden="true"><span style="width:${width}%"></span></div>
+            <small>${escapeHtml(maturityLabel(section.score))}</small>
+          </article>`;
+      }).join("");
+
+      const priorities = scores.sections.flatMap(section => section.groups)
+        .filter(group => group.score !== null)
+        .sort((a, b) => a.score - b.score)
+        .slice(0, 3);
+      els.priorityList.innerHTML = priorities.map((item, index) => `
+        <article class="priority-item">
+          <span class="priority-item-number">${String(index + 1).padStart(2, "0")}</span>
+          <div>
+            <h3>${escapeHtml(item.groupTitle)}</h3>
+            <p>${escapeHtml(item.sectionCode)} · ${escapeHtml(item.sectionTitle)} · ${escapeHtml(maturityLabel(item.score))}</p>
+          </div>
+          <strong>${formatScore(item.score)}</strong>
+        </article>`).join("") || `<p>Nessuna area valutabile.</p>`;
+      updateWorkflowUI();
+    }
+
+    function openCompletionWorkflow() {
+      const missing = validateAllQuestions();
+      if (missing.length || !participantIsComplete()) {
+        showToast("Completa il profilo e tutte le risposte prima di inviare.");
+        return;
+      }
+      renderResults();
+      els.campusDirectorEmail.value = state.workflow.email || "";
+      updateWorkflowUI();
+      if (typeof els.workflowDialog.showModal === "function") {
+        els.workflowDialog.showModal();
+      } else {
+        els.workflowDialog.setAttribute("open", "");
+      }
+      window.setTimeout(() => els.savePdfButton.focus(), 80);
+    }
+
+    function updateWorkflowUI() {
+      if (!els.workflowStep1) return;
+      const mailEndpointConfigured = Boolean(CONFIG.campusDirectorMailFlowUrl.trim());
+      const finalEndpointConfigured = Boolean(CONFIG.powerAutomateUrl.trim());
+      const emailValid = isValidEmail(state.workflow.email);
+
+      els.workflowStep1.classList.toggle("is-complete", state.workflow.pdfDownloaded);
+      els.workflowStep2.classList.toggle("is-complete", state.workflow.emailSent);
+      els.workflowStep3.classList.toggle("is-complete", Boolean(state.submittedAt));
+
+      els.pdfStatus.textContent = state.workflow.pdfDownloaded
+        ? `Salvato · ${state.workflow.pdfFileName}`
+        : "Da completare";
+      els.emailStatus.textContent = state.workflow.emailSent
+        ? "Inviato"
+        : (mailEndpointConfigured ? "Da completare" : "Non configurato");
+      els.finalStatus.textContent = state.submittedAt
+        ? "Completato"
+        : (state.workflow.pdfDownloaded && state.workflow.emailSent ? "Pronto" : "In attesa");
+
+      els.sendProfileButton.disabled = !mailEndpointConfigured || !state.workflow.pdfDownloaded || !emailValid || state.workflow.sendingEmail;
+      els.sendProfileButton.textContent = state.workflow.sendingEmail
+        ? "Invio in corso…"
+        : (state.workflow.emailSent ? "Invia di nuovo" : "Invia il PDF");
+
+      els.manualEmailConfirmation.hidden = true;
+      els.emailSentConfirm.checked = false;
+
+      els.finalSubmitButton.disabled = !state.workflow.pdfDownloaded || !state.workflow.emailSent || state.workflow.submitting || !finalEndpointConfigured;
+      els.finalSubmitButton.textContent = state.workflow.submitting ? "Invio in corso…" : "Invia i dati";
+
+      els.mailModeText.textContent = mailEndpointConfigured
+        ? "Inserisci l’indirizzo email del Campus Director. Il PDF salvato al passaggio 1 verrà allegato e inviato automaticamente tramite Outlook."
+        : "Invio automatico non ancora configurato. Prima della pubblicazione inserisci l’URL del flusso Power Automate dedicato all’email nel file index.html.";
+
+      const missingConfiguration = [];
+      if (!mailEndpointConfigured) missingConfiguration.push("flusso email con allegato");
+      if (!finalEndpointConfigured) missingConfiguration.push("flusso di invio dati");
+      els.workflowModeNote.textContent = missingConfiguration.length
+        ? `Configurazione da completare: ${missingConfiguration.join(" e ")}.`
+        : "";
+      els.workflowModeNote.hidden = missingConfiguration.length === 0;
+    }
+
+    function makeSubmissionId() {
+      if (state.submissionId) return state.submissionId;
+      state.submissionId = (window.crypto && crypto.randomUUID)
+        ? crypto.randomUUID()
+        : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+      return state.submissionId;
+    }
+
+    function buildPayload() {
+      const scores = calculateScores();
+      const now = new Date();
+      const numericAnswers = ALL_QUESTIONS.filter(q => typeof state.answers[q.id] === "number").length;
+      const notApplicable = ALL_QUESTIONS.filter(q => state.answers[q.id] === "na").length;
+      return {
+        surveyId: CONFIG.surveyId,
+        surveyVersion: CONFIG.surveyVersion,
+        submissionId: makeSubmissionId(),
+        startedAt: state.startedAt,
+        submittedAt: now.toISOString(),
+        durationSeconds: state.startedAt ? Math.max(0, Math.round((now.getTime() - new Date(state.startedAt).getTime()) / 1000)) : null,
+        participant: {
+          name: state.participant.name,
+          employeeCode: state.participant.employeeCode,
+          storeCode: state.participant.storeCode,
+          role: state.participant.role,
+          campusDirectorEmail: state.workflow.email
+        },
+        completion: {
+          totalQuestions: ALL_QUESTIONS.length,
+          numericAnswers,
+          notApplicable,
+          completed: numericAnswers + notApplicable,
+          percent: Math.round(((numericAnswers + notApplicable) / ALL_QUESTIONS.length) * 100),
+          profilePdfFileName: state.workflow.pdfFileName,
+          profileSentToCampusDirector: state.workflow.emailSent
+        },
+        scores: {
+          overall: scores.overall === null ? null : Number(scores.overall.toFixed(2)),
+          sections: scores.sections.map(section => ({
+            code: section.code,
+            title: section.title,
+            score: section.score === null ? null : Number(section.score.toFixed(2)),
+            label: maturityLabel(section.score),
+            groups: section.groups.map(group => ({
+              id: group.groupId,
+              title: group.groupTitle,
+              score: group.score === null ? null : Number(group.score.toFixed(2)),
+              label: maturityLabel(group.score)
+            }))
+          }))
+        },
+        responses: ALL_QUESTIONS.map(question => {
+          const value = state.answers[question.id];
+          return {
+            questionId: question.id,
+            department: question.sectionCode,
+            departmentTitle: question.sectionTitle,
+            area: question.groupTitle,
+            statement: question.text,
+            value: value === "na" ? null : value,
+            response: SCALE[String(value)],
+            notApplicable: value === "na"
+          };
+        })
+      };
+    }
+
+    /* Lightweight, dependency-free PDF generator for the personal profile. */
+    const PDF_LOGO_JPEG_BASE64 = "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";
+
+    function pdfWinAnsiByte(character) {
+      const special = {
+        "€": 0x80, "‚": 0x82, "ƒ": 0x83, "„": 0x84, "…": 0x85, "†": 0x86,
+        "‡": 0x87, "ˆ": 0x88, "‰": 0x89, "Š": 0x8A, "‹": 0x8B, "Œ": 0x8C,
+        "Ž": 0x8E, "‘": 0x91, "’": 0x92, "“": 0x93, "”": 0x94, "•": 0x95,
+        "–": 0x96, "—": 0x97, "˜": 0x98, "™": 0x99, "š": 0x9A, "›": 0x9B,
+        "œ": 0x9C, "ž": 0x9E, "Ÿ": 0x9F
+      };
+      if (Object.prototype.hasOwnProperty.call(special, character)) return special[character];
+      const code = character.codePointAt(0);
+      if (code >= 0 && code <= 255) return code;
+      return 0x3F;
+    }
+
+    function pdfHex(value) {
+      return Array.from(String(value)).map(character => pdfWinAnsiByte(character).toString(16).padStart(2, "0")).join("").toUpperCase();
+    }
+
+    function pdfText(x, y, size, font, text, gray = 0) {
+      return `${gray.toFixed(3)} g BT /${font} ${size} Tf 1 0 0 1 ${x} ${y} Tm <${pdfHex(text)}> Tj ET\n`;
+    }
+
+    function pdfRect(x, y, width, height, gray = 0) {
+      return `${gray.toFixed(3)} g ${x} ${y} ${width} ${height} re f\n`;
+    }
+
+    function pdfLine(x1, y1, x2, y2, gray = 0, width = 1) {
+      return `${gray.toFixed(3)} G ${width} w ${x1} ${y1} m ${x2} ${y2} l S\n`;
+    }
+
+    function pdfFit(value, maxLength) {
+      const text = String(value || "");
+      return text.length <= maxLength ? text : `${text.slice(0, Math.max(0, maxLength - 1))}…`;
+    }
+
+    function buildProfilePdfBytes() {
+      const scores = calculateScores();
+      const priorities = scores.sections.flatMap(section => section.groups)
+        .filter(group => group.score !== null)
+        .sort((a, b) => a.score - b.score)
+        .slice(0, 3);
+      const p = state.participant;
+      const content = [];
+
+      content.push(pdfRect(0, 772, 595, 70, 0));
+      content.push(pdfText(40, 811, 18, "F2", "SCANBOOK", 1));
+      content.push(pdfText(40, 791, 9, "F1", "IL TUO PUNTO DI PARTENZA", 1));
+      content.push("q\n115 0 0 41.55 435 786 cm\n/Logo Do\nQ\n");
+
+      content.push(pdfText(40, 742, 10, "F2", "PROFILO", 0));
+      content.push(pdfLine(40, 733, 555, 733, .15, .8));
+      content.push(pdfText(40, 710, 9, "F1", "Nome e cognome", .45));
+      content.push(pdfText(40, 694, 13, "F2", pdfFit(p.name, 42), 0));
+      content.push(pdfText(250, 710, 9, "F1", "Codice dipendente", .45));
+      content.push(pdfText(250, 694, 13, "F2", p.employeeCode, 0));
+      content.push(pdfText(40, 668, 9, "F1", "Codice negozio", .45));
+      content.push(pdfText(40, 652, 13, "F2", p.storeCode, 0));
+      content.push(pdfText(250, 668, 9, "F1", "Ruolo", .45));
+      content.push(pdfText(250, 652, 11, "F2", pdfFit(p.role, 38), 0));
+
+      content.push(pdfRect(430, 648, 125, 84, 0));
+      content.push(pdfText(445, 710, 8, "F1", "MEDIA COMPLESSIVA", 1));
+      content.push(pdfText(445, 672, 32, "F2", formatScore(scores.overall), 1));
+      content.push(pdfText(445, 656, 8, "F1", maturityLabel(scores.overall).toUpperCase(), .82));
+
+      content.push(pdfText(40, 612, 10, "F2", "LE 5 AREE", 0));
+      content.push(pdfLine(40, 603, 555, 603, .15, .8));
+      const areaStart = 577;
+      scores.sections.forEach((section, index) => {
+        const y = areaStart - (index * 44);
+        const numeric = section.score === null ? 0 : section.score;
+        content.push(pdfText(40, y, 8, "F1", String(index + 1).padStart(2, "0"), .5));
+        content.push(pdfText(68, y, 10, "F2", pdfFit(`${section.code} · ${section.title}`, 42), 0));
+        content.push(pdfText(520, y, 11, "F2", formatScore(section.score), 0));
+        content.push(pdfRect(240, y - 4, 255, 4, .9));
+        content.push(pdfRect(240, y - 4, Math.max(0, Math.min(255, (numeric / 5) * 255)), 4, 0));
+      });
+
+      content.push(pdfText(40, 342, 10, "F2", "AREE DI ATTENZIONE", 0));
+      content.push(pdfLine(40, 333, 555, 333, .15, .8));
+      priorities.forEach((item, index) => {
+        const y = 305 - (index * 44);
+        content.push(pdfText(40, y, 9, "F1", String(index + 1).padStart(2, "0"), .5));
+        content.push(pdfText(68, y, 11, "F2", pdfFit(item.groupTitle, 52), 0));
+        content.push(pdfText(68, y - 15, 8, "F1", pdfFit(`${item.sectionCode} · ${maturityLabel(item.score)}`, 58), .45));
+        content.push(pdfText(520, y, 11, "F2", formatScore(item.score), 0));
+      });
+
+      content.push(pdfLine(40, 132, 555, 132, .75, .7));
+      content.push(pdfText(40, 111, 8, "F1", `Generato il ${new Intl.DateTimeFormat(CONFIG.locale, { dateStyle: "long" }).format(new Date())}`, .5));
+      content.push(pdfText(40, 92, 8, "F1", "Il profilo è una fotografia auto-percepita e non una valutazione di performance.", .5));
+
+      const encoder = new TextEncoder();
+      const ascii = value => encoder.encode(value);
+      const base64Bytes = value => {
+        const binary = atob(value);
+        const bytes = new Uint8Array(binary.length);
+        for (let i = 0; i < binary.length; i += 1) bytes[i] = binary.charCodeAt(i);
+        return bytes;
+      };
+      const concatenate = parts => {
+        const total = parts.reduce((sum, part) => sum + part.length, 0);
+        const output = new Uint8Array(total);
+        let cursor = 0;
+        parts.forEach(part => {
+          output.set(part, cursor);
+          cursor += part.length;
+        });
+        return output;
+      };
+
+      const contentBytes = ascii(content.join(""));
+      const logoBytes = base64Bytes(PDF_LOGO_JPEG_BASE64);
+      const objects = [
+        null,
+        { body: ascii("<< /Type /Catalog /Pages 2 0 R >>") },
+        { body: ascii("<< /Type /Pages /Kids [4 0 R] /Count 1 >>") },
+        { body: ascii("<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>") },
+        { body: ascii("<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 5 0 R >> /XObject << /Logo 7 0 R >> >> /Contents 6 0 R >>") },
+        { body: ascii("<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>") },
+        { dictionary: `<< /Length ${contentBytes.length} >>`, stream: contentBytes },
+        { dictionary: `<< /Type /XObject /Subtype /Image /Width 490 /Height 177 /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${logoBytes.length} >>`, stream: logoBytes }
+      ];
+
+      const chunks = [];
+      const offsets = new Array(objects.length).fill(0);
+      let length = 0;
+      const add = bytes => {
+        chunks.push(bytes);
+        length += bytes.length;
+      };
+      add(ascii("%PDF-1.4\n%SCANBOOK\n"));
+      for (let i = 1; i < objects.length; i += 1) {
+        offsets[i] = length;
+        add(ascii(`${i} 0 obj\n`));
+        const object = objects[i];
+        if (object.stream) {
+          add(ascii(`${object.dictionary}\nstream\n`));
+          add(object.stream);
+          add(ascii("\nendstream\n"));
+        } else {
+          add(object.body);
+          add(ascii("\n"));
+        }
+        add(ascii("endobj\n"));
+      }
+      const xrefOffset = length;
+      add(ascii(`xref\n0 ${objects.length}\n`));
+      add(ascii("0000000000 65535 f \n"));
+      for (let i = 1; i < objects.length; i += 1) {
+        add(ascii(`${String(offsets[i]).padStart(10, "0")} 00000 n \n`));
+      }
+      add(ascii(`trailer\n<< /Size ${objects.length} /Root 1 0 R >>\nstartxref\n${xrefOffset}\n%%EOF`));
+      return concatenate(chunks);
+    }
+
+    function getProfilePdf() {
+      if (profilePdfCache) return profilePdfCache;
+      const bytes = buildProfilePdfBytes();
+      const filename = `Scanbook_${safeFilename(state.participant.name)}_${safeFilename(state.participant.employeeCode)}_${dateStamp()}.pdf`;
+      profilePdfCache = {
+        bytes,
+        filename,
+        blob: new Blob([bytes], { type: "application/pdf" })
+      };
+      return profilePdfCache;
+    }
+
+    function downloadProfilePdf() {
+      const pdf = getProfilePdf();
+      triggerBlobDownload(pdf.filename, pdf.blob);
+      state.workflow.pdfDownloaded = true;
+      state.workflow.pdfFileName = pdf.filename;
+      els.workflowError.textContent = "";
+      updateWorkflowUI();
+      showToast("PDF creato e scaricato.");
+    }
+
+    function isValidEmail(value) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value || "").trim());
+    }
+
+    function buildEmailContent() {
+      const p = state.participant;
+      const subject = `Profilo Scanbook – ${p.name} – Store ${p.storeCode}`;
+      const bodyText = [
+        "Buongiorno,",
+        "",
+        "ti invio in allegato il mio profilo Scanbook, completato come punto di partenza per il percorso formativo nel Campus.",
+        "",
+        "Dati del partecipante",
+        `Nome e cognome: ${p.name}`,
+        `Codice dipendente: ${p.employeeCode}`,
+        `Codice negozio: ${p.storeCode}`,
+        `Ruolo: ${p.role}`,
+        "",
+        "Grazie,",
+        p.name
+      ].join("\n");
+      const bodyHtml = `<p>Buongiorno,</p><p>ti invio in allegato il mio profilo <strong>Scanbook</strong>, completato come punto di partenza per il percorso formativo nel Campus.</p><p><strong>Dati del partecipante</strong><br>Nome e cognome: ${escapeHtml(p.name)}<br>Codice dipendente: ${escapeHtml(p.employeeCode)}<br>Codice negozio: ${escapeHtml(p.storeCode)}<br>Ruolo: ${escapeHtml(p.role)}</p><p>Grazie,<br>${escapeHtml(p.name)}</p>`;
+      return { subject, bodyText, bodyHtml };
+    }
+
+    function bytesToBase64(bytes) {
+      let binary = "";
+      const chunkSize = 0x8000;
+      for (let offset = 0; offset < bytes.length; offset += chunkSize) {
+        binary += String.fromCharCode(...bytes.subarray(offset, offset + chunkSize));
+      }
+      return btoa(binary);
+    }
+
+    async function sendProfileToCampusDirector() {
+      const email = state.workflow.email.trim();
+      if (!state.workflow.pdfDownloaded) {
+        els.workflowError.textContent = "Salva prima il profilo in PDF.";
+        return;
+      }
+      if (!isValidEmail(email)) {
+        els.campusDirectorEmailError.textContent = "Inserisci un indirizzo email valido.";
+        els.campusDirectorEmail.focus();
+        return;
+      }
+
+      const mailFlowUrl = CONFIG.campusDirectorMailFlowUrl.trim();
+      if (!mailFlowUrl) {
+        els.workflowError.textContent = "L’invio automatico con PDF allegato non è ancora configurato. Inserisci campusDirectorMailFlowUrl nel file index.html.";
+        updateWorkflowUI();
+        return;
+      }
+
+      els.campusDirectorEmailError.textContent = "";
+      els.workflowError.textContent = "";
+      const { subject, bodyText, bodyHtml } = buildEmailContent();
+      state.workflow.sendingEmail = true;
+      updateWorkflowUI();
+
+      try {
+        const pdf = getProfilePdf();
+        const response = await fetch(mailFlowUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            recipient: email,
+            subject,
+            bodyText,
+            bodyHtml,
+            attachmentName: pdf.filename,
+            attachmentContentBase64: bytesToBase64(pdf.bytes),
+            attachmentContentType: "application/pdf",
+            participant: state.participant,
+            submissionId: makeSubmissionId()
+          })
+        });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+        state.workflow.emailSent = true;
+        state.workflow.outlookOpened = false;
+        els.workflowError.textContent = "";
+        showToast("PDF allegato e inviato al Campus Director.");
+      } catch (error) {
+        console.error("Errore invio profilo", error);
+        state.workflow.emailSent = false;
+        els.workflowError.textContent = "Invio del PDF non riuscito. Verifica l’URL e la configurazione del flusso Power Automate dedicato all’email.";
+      } finally {
+        state.workflow.sendingEmail = false;
+        updateWorkflowUI();
+      }
+    }
+
+    async function finalSubmit() {
+      if (!state.workflow.pdfDownloaded || !state.workflow.emailSent) {
+        els.workflowError.textContent = "Completa i primi due passaggi prima dell’invio finale.";
+        return;
+      }
+      const missing = validateAllQuestions();
+      if (missing.length) {
+        els.workflowError.textContent = "Il questionario non è completo.";
+        return;
+      }
+      const endpoint = CONFIG.powerAutomateUrl.trim();
+      if (!endpoint) {
+        els.workflowError.textContent = "L’invio definitivo non è ancora configurato. Inserisci l’URL Power Automate nel file index.html.";
+        updateWorkflowUI();
+        return;
+      }
+      state.workflow.submitting = true;
+      els.workflowError.textContent = "";
+      updateWorkflowUI();
+      const payload = buildPayload();
+      try {
+        const response = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        state.submittedAt = payload.submittedAt;
+        state.workflow.submitting = false;
+        if (els.workflowDialog.open) els.workflowDialog.close();
+        setView("final");
+      } catch (error) {
+        console.error("Errore invio dati", error);
+        state.workflow.submitting = false;
+        els.workflowError.textContent = "Invio non riuscito. Verifica l’URL Power Automate e riprova.";
+        updateWorkflowUI();
+      }
+    }
+
+    function csvEscape(value) {
+      const text = value === null || value === undefined ? "" : String(value);
+      return `"${text.replaceAll('"', '""')}"`;
+    }
+
+    function downloadCsv(payload) {
+      const sectionScoreMap = new Map(payload.scores.sections.map(section => [section.code, section.score]));
+      const header = [
+        "Submission ID", "Data invio", "Nome e cognome", "Codice dipendente", "Codice negozio", "Ruolo", "Email Campus Director",
+        "Dipartimento", "Area tematica", "ID domanda", "Affermazione", "Punteggio", "Risposta",
+        "Non valutabile", "Media dipartimento", "Media complessiva"
+      ];
+      const rows = payload.responses.map(response => [
+        payload.submissionId,
+        payload.submittedAt,
+        payload.participant.name,
+        payload.participant.employeeCode,
+        payload.participant.storeCode,
+        payload.participant.role,
+        payload.participant.campusDirectorEmail,
+        response.department,
+        response.area,
+        response.questionId,
+        response.statement,
+        response.value,
+        response.response,
+        response.notApplicable ? "Sì" : "No",
+        sectionScoreMap.get(response.department),
+        payload.scores.overall
+      ]);
+      const csv = [header, ...rows].map(row => row.map(csvEscape).join(";")).join("\r\n");
+      triggerBlobDownload(
+        `Scanbook_${safeFilename(payload.participant.name)}_${dateStamp()}.csv`,
+        new Blob(["\ufeff" + csv], { type: "text/csv;charset=utf-8" })
+      );
+    }
+
+    function triggerBlobDownload(filename, blob) {
+      const url = URL.createObjectURL(blob);
+      const anchor = document.createElement("a");
+      anchor.href = url;
+      anchor.download = filename;
+      document.body.appendChild(anchor);
+      anchor.click();
+      anchor.remove();
+      window.setTimeout(() => URL.revokeObjectURL(url), 700);
+    }
+
+    function safeFilename(value) {
+      return (value || "partecipante")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-zA-Z0-9]+/g, "_")
+        .replace(/^_+|_+$/g, "")
+        .slice(0, 60) || "partecipante";
+    }
+
+    function dateStamp() {
+      const date = new Date();
+      return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function showToast(message) {
+      window.clearTimeout(toastTimer);
+      els.toast.textContent = message;
+      els.toast.classList.add("is-visible");
+      toastTimer = window.setTimeout(() => els.toast.classList.remove("is-visible"), 3500);
+    }
+
+    // Events
+    els.primaryStartButton.addEventListener("click", startOrResume);
+    els.brandHomeButton.addEventListener("click", () => setView("welcome"));
+    els.exitButton.addEventListener("click", () => {
+      if (!allQuestionsAreComplete()) return;
+      renderResults();
+      setView("results");
+      window.setTimeout(openCompletionWorkflow, 60);
+    });
+
+    els.profileForm.addEventListener("submit", event => {
+      event.preventDefault();
+      const { valid, values } = validateProfile();
+      if (!valid) return;
+      const changed = JSON.stringify(values) !== JSON.stringify(state.participant);
+      state.participant = values;
+      state.startedAt = state.startedAt || new Date().toISOString();
+      if (changed) invalidateCompletionArtifacts();
+      renderSurvey();
+      setView("survey");
+      touchState();
+    });
+
+    [els.participantName, els.employeeCode, els.storeCode, els.participantRole].forEach(input => {
+      input.addEventListener("input", () => {
+        const values = currentProfileValues();
+        const changed = JSON.stringify(values) !== JSON.stringify(state.participant);
+        state.participant = values;
+        if (changed) invalidateCompletionArtifacts();
+        touchState();
+      });
+      input.addEventListener("change", () => {
+        const values = currentProfileValues();
+        const changed = JSON.stringify(values) !== JSON.stringify(state.participant);
+        state.participant = values;
+        if (changed) invalidateCompletionArtifacts();
+        touchState();
+      });
+    });
+
+    els.previousSectionButton.addEventListener("click", previousSection);
+    els.nextSectionButton.addEventListener("click", nextSection);
+    els.backToSurveyButton.addEventListener("click", () => { renderSurvey(); setView("survey"); });
+    els.openCompletionButton.addEventListener("click", openCompletionWorkflow);
+    els.workflowCloseButton.addEventListener("click", () => els.workflowDialog.close());
+    els.workflowDialog.addEventListener("cancel", () => { els.workflowError.textContent = ""; });
+    els.savePdfButton.addEventListener("click", downloadProfilePdf);
+    els.campusDirectorEmail.addEventListener("input", () => {
+      const nextEmail = els.campusDirectorEmail.value.trim();
+      if (nextEmail !== state.workflow.email) {
+        state.workflow.email = nextEmail;
+        state.workflow.outlookOpened = false;
+        state.workflow.emailSent = false;
+      }
+      els.campusDirectorEmailError.textContent = nextEmail && !isValidEmail(nextEmail) ? "Inserisci un indirizzo email valido." : "";
+      updateWorkflowUI();
+    });
+    els.sendProfileButton.addEventListener("click", sendProfileToCampusDirector);
+    els.emailSentConfirm.addEventListener("change", () => {
+      state.workflow.emailSent = els.emailSentConfirm.checked;
+      els.workflowError.textContent = "";
+      updateWorkflowUI();
+    });
+    els.finalSubmitButton.addEventListener("click", finalSubmit);
+
+    // Initial render
+    updateWelcomeState();
+    fillProfileForm();
+    renderNavigation();
+    updateProgress();
+    updateWorkflowUI();
+    setView("welcome");
+  </script>
+</body>
+</html>
